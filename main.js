@@ -74,12 +74,10 @@ client.on("message",function(message){
                 let user = message.mentions.users.first();
                 message.channel.send(user.displayAvatarURL());
                 break;
-                /*
             case "nickall":
                 let nick = message.content.replace(`${prefix}nickall `,'');
                 message.guild.members.array().forEach(member => if (!member.bot) member.setNickname(nick));
                 break;
-                */
             case "covid":
                 functions.getCovidStats(message);
                 break;
