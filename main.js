@@ -77,13 +77,17 @@ client.on("message",function(message){
                 /*
             case "nickall":
                 let nick = message.content.replace(`${prefix}nickall `,'');
-                message.guild.members.array().forEach(member => member.setNickname(nick));
+                message.guild.members.array().forEach(member => if (!member.bot) member.setNickname(nick));
                 break;
                 */
             case "covid":
                 functions.getCovidStats(message);
                 break;
+            case "kick":
+                if (message.author.hasPermission("KICK_MEMBERS")){
+                    const user = message.content.mentions.first();
 
+                }
             default:
                 message.channel.send("That is not a commmand!");
         }
