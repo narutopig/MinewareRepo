@@ -20,6 +20,20 @@ client.on("guildBanAdd", function(guild, user){
     }
 });
 
+client.on('guildMemberAdd', member => {
+    // Don't know the role id?
+    const channel = client.channels.cache.get(config.memberCountChannel.toString());
+    const guild = client.guilds.cache.get(config.id.toString());
+    channel.setName(`Members: ${guild.members.size}`)
+});
+
+client.on('guildMemberRemove', member => {
+    // Don't know the role id?
+    const channel = client.channels.cache.get(config.memberCountChannel.toString());
+    const guild = client.guilds.cache.get(config.id.toString());
+    channel.setName(`Members: ${guild.members.size}`)
+});
+
 client.on("message",function(message){
     if (message.author.bot){
         return;
@@ -75,6 +89,7 @@ client.on("message",function(message){
                 message.channel.send(user.displayAvatarURL());
                 break;
             case "nickall":
+                if ()
                 let nick = message.content.replace(`${prefix}nickall `,'');
                 message.guild.members.array().forEach(member => if (!member.bot) member.setNickname(nick));
                 break;
