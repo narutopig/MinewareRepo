@@ -85,9 +85,24 @@ client.on("message",function(message){
                 break;
             case "kick":
                 if (message.author.hasPermission("KICK_MEMBERS")){
-                    const user = message.content.mentions.first();
-
+                    try{
+                        message.members.mentions.first().kick();
+                    }
+                    catch{
+                        message.channel.send("Something went wrong :(")
+                    }
                 }
+                break;
+            case "ban":
+                if (message.author.hasPermission("BAN_MEMBERS")){
+                    try{
+                        message.members.mentions.first().ban();
+                    }
+                    catch{
+                        message.channel.send("Something went wrong :(")
+                    }
+                }
+                break;
             default:
                 message.channel.send("That is not a commmand!");
         }
