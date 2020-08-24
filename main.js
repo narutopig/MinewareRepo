@@ -8,6 +8,9 @@ rawdata = fs.readFileSync('./resources/factions.json');
 let factions = JSON.parse(rawdata);
 const client = new Discord.Client();
 const token = config.token;
+
+//hello this is andrew typing can u see this
+
 client.on("ready",function(){
     console.log(`${functions.formatTime()} Mineware Bot has logged in`);
     client.user.setActivity(`Canary Release!`);
