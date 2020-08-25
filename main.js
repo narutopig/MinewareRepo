@@ -45,8 +45,8 @@ client.on("message",function(message){
     if (message.author.bot){
         return;
     }
-    if (member.roles.cache.some(role => role.name === 'Muted')){
-        message.delete();
+    if (message.member.roles.cache.some(role => role.name === 'Muted')){
+        message.delete(limit = 3);
     }
     if (message.content.startsWith(config.prefix)){
         var func = message.content.split(" ")[0].slice(1);

@@ -4,7 +4,7 @@ const fs = require('fs');
 let rawdata = fs.readFileSync('./resources/config.json');
 let config = JSON.parse(rawdata);
 function formatNumber(x){
-    return x.toLocaleString();
+    return null;
 }
 function formatTime(){
     var d = new Date();
