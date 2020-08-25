@@ -4,8 +4,6 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 let rawdata = fs.readFileSync('./resources/config.json');
 let config = JSON.parse(rawdata);
-rawdata = fs.readFileSync('./resources/factions.json');
-let factions = JSON.parse(rawdata);
 const client = new Discord.Client();
 const token = config.token;
 
