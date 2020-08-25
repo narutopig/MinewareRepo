@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 const fs = require('fs');
 let rawdata = fs.readFileSync('./resources/config.json');
 let config = JSON.parse(rawdata);
-function formatNumber(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+function formatNumber(x){
+    return x.toLocaleString();
 }
 function formatTime(){
     var d = new Date();
@@ -53,3 +53,7 @@ function getCovidStats(message){ // sends a discord.MessageEmbed
         console.error(error.message);
     });
 }
+exports.formatTime = formatTime();
+exports.formatNumber = formatNumber();
+exports.permsError = permsError();
+exports.getCovidStats = getCovidStats();
