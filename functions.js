@@ -12,7 +12,10 @@ function formatTime(){
     var time = "[" + time + "]:";
     return time;
 }
-function getCovidStats(message){ // sends a discoord.MessageEmbed
+function permsError(perm){
+    return `You need the \`${perm}\` permission in order to use this command`;
+}
+function getCovidStats(message){ // sends a discord.MessageEmbed
     // update so that more countries stats can be seen
     let url = `https://api.covidtracking.com/v1/us/current.json`;
     https.get(url,(res) => {
@@ -50,5 +53,3 @@ function getCovidStats(message){ // sends a discoord.MessageEmbed
         console.error(error.message);
     });
 }
-exports.formatTime = formatTime;
-exports.getCovidStats = getCovidStats;

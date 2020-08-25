@@ -22,22 +22,27 @@ client.on("guildBanAdd", function(guild, user){
 });
 
 client.on('guildMemberAdd', member => {
-    // Don't know the role id?
-    const channel = client.channels.cache.get(config.memberCountChannel.toString());
-    const guild = client.guilds.cache.get(config.id.toString());
-    channel.setName(`Members: ${guild.members.size}`)
+    try{
+        const channel = client.channels.cache.get(config.memberCountChannel.toString());
+        const guild = client.guilds.cache.get(config.id.toString());
+        channel.setName(`Members: ${guild.members.size}`)
+    }
 });
 
 client.on('guildMemberRemove', member => {
-    // Don't know the role id?
-    const channel = client.channels.cache.get(config.memberCountChannel.toString());
-    const guild = client.guilds.cache.get(config.id.toString());
-    channel.setName(`Members: ${guild.members.size}`)
+    try{
+        const channel = client.channels.cache.get(config.memberCountChannel.toString());
+        const guild = client.guilds.cache.get(config.id.toString());
+        channel.setName(`Members: ${guild.members.size}`)
+    }
 });
 
 client.on("message",function(message){
     if (message.author.bot){
         return;
+    }
+    if (member.roles.cache.some(role => role.name === 'Muted')){
+        message.delete();
     }
     if (message.content.startsWith(config.prefix)){
         var func = message.content.split(" ")[0].slice(1);
@@ -80,7 +85,7 @@ client.on("message",function(message){
                     channel.send(s);
                 }
                 else{
-                    message.channel.send("You cannot use that command!");
+                    message.channel.send(functions.permsError("ADMINISTRATOR"));
                 }
                 var temp = `${functions.formatTime} ${message.author} used command ${func}`;
                 console.log(temp);
@@ -99,6 +104,9 @@ client.on("message",function(message){
                         message.channel.send("Something went wrong :(")
                     }
                 }
+                else{
+                    message.channel.send(functions.permsError("MANAGE_NICKNAMES"));
+                }
                 break;
             case "covid":
                 functions.getCovidStats(message);
@@ -112,6 +120,9 @@ client.on("message",function(message){
                         message.channel.send("Something went wrong :(")
                     }
                 }
+                else{
+                    message.channel.send(functions.permsError("KICK_MEMBERS"));
+                }
                 break;
             case "ban":
                 if (message.author.hasPermission("BAN_MEMBERS")){
@@ -121,6 +132,9 @@ client.on("message",function(message){
                     catch{
                         message.channel.send("Something went wrong :(")
                     }
+                }
+                else{
+                    message.channel.send(functions.permsError("BAN_MEMBERS"));
                 }
                 break;
         }
