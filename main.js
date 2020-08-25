@@ -46,7 +46,7 @@ client.on("message",function(message){
         return;
     }
     if (message.member.roles.cache.some(role => role.name === 'Muted')){
-        message.delete(limit = 3);
+        message.delete();
     }
     if (message.content.startsWith(config.prefix)){
         var func = message.content.split(" ")[0].slice(1);
