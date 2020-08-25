@@ -27,6 +27,9 @@ client.on('guildMemberAdd', member => {
         const guild = client.guilds.cache.get(config.id.toString());
         channel.setName(`Members: ${guild.members.size}`)
     }
+    catch(err){
+        console.log(err);
+    }
 });
 
 client.on('guildMemberRemove', member => {
@@ -34,6 +37,9 @@ client.on('guildMemberRemove', member => {
         const channel = client.channels.cache.get(config.memberCountChannel.toString());
         const guild = client.guilds.cache.get(config.id.toString());
         channel.setName(`Members: ${guild.members.size}`)
+    }
+    catch(err){
+        console.log(err);
     }
 });
 
