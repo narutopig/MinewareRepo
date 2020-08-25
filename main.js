@@ -104,7 +104,11 @@ client.on("message",function(message){
                 if (message.author.hasPerimission("MANAGE_NICKNAMES")){
                     try{
                         let nick = message.content.replace(`${prefix}nickall `,'');
-                        message.guild.members.array().forEach(member => if (!member.bot) member.setNickname(nick));
+                        for(var i = 0; i < message.guild.members.array().length; i++){
+                            if(!member.bot){
+                                member.setNickname(nick);
+                            }
+                        }
                     }
                     catch{
                         message.channel.send("Something went wrong :(")
