@@ -90,9 +90,15 @@ client.on("message",function(message){
                 message.channel.send(user.displayAvatarURL());
                 break;
             case "nickall":
-                if ()
-                let nick = message.content.replace(`${prefix}nickall `,'');
-                message.guild.members.array().forEach(member => if (!member.bot) member.setNickname(nick));
+                if (message.author.hasPerimission("MANAGE_NICKNAMES")){
+                    try{
+                        let nick = message.content.replace(`${prefix}nickall `,'');
+                        message.guild.members.array().forEach(member => if (!member.bot) member.setNickname(nick));
+                    }
+                    catch{
+                        message.channel.send("Something went wrong :(")
+                    }
+                }
                 break;
             case "covid":
                 functions.getCovidStats(message);
