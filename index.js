@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 let rawdata = fs.readFileSync('./resources/config.json');
 let config = JSON.parse(rawdata);
 rawdata = fs.readFileSync('./resources/package.json');
-let package = JSON.parse(rawdata);
+let pkg = JSON.parse(rawdata);
 rawdata = fs.readFileSync('./resources/eco.json');
 let eco = JSON.parse(rawdata);
 const client = new Discord.Client();
@@ -111,6 +111,7 @@ function covid(message){ // sends a discord.MessageEmbed
 }
 client.on('ready', function(){
     console.log('Logged in.')
+    client.user.setActivity(`${config.prefix}help | v${pkg.version}`);
 });
 
 client.on('message', function(message){
@@ -138,5 +139,5 @@ client.on('message', function(message){
     console.log(`Command: ${command}\nArgs: ${args}`);
 })
 console.log(config);
-console.log(package);
+console.log(pkg);
 client.login(config.token);
