@@ -109,12 +109,20 @@ function covid(message){ // sends a discord.MessageEmbed
     console.error(error.message);
 });
 }
+function bug(message,args){
+    var bug = args.slice(1).join(" ");
+    const user = client.users.cache.get('537498289600200724');
+    user.send(bug);
+}
 client.on('ready', function(){
     console.log('Logged in.')
     client.user.setActivity(`${config.prefix}help | v${pkg.version}`);
 });
 
 client.on('message', function(message){
+    if (message.member.roles.cache.find(r => r.name === "Muted")) {
+        message.delete();
+    }
     if (!message.guild) return;
     if (!message.content.startsWith(config.prefix)) return;
     var command = message.content.split(' ')[0].slice(1);
@@ -135,6 +143,8 @@ client.on('message', function(message){
         case 'COVID':
             covid(message);
             break;
+        case 'BUG':
+            bug(message,args);
     }
     console.log(`Command: ${command}\nArgs: ${args}`);
 })
