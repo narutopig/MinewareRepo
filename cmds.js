@@ -5,8 +5,6 @@ let rawdata = fs.readFileSync('./resources/config.json');
 let config = JSON.parse(rawdata);
 rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
-rawdata = fs.readFileSync('./resources/eco.json');
-let eco = JSON.parse(rawdata);
 const https = require('https');
 const client = new Discord.Client();
 
