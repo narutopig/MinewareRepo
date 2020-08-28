@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Discord = require('discord.js');
 const fs = require('fs');
 const fetch = require('node-fetch');
@@ -6,7 +7,7 @@ let config = JSON.parse(rawdata);
 rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
 const client = new Discord.Client();
-const token = config.token;
+const token = process.env.token;
 const https = require('https');
 const cmds = require('./cmds.js');
 
@@ -50,4 +51,4 @@ client.on('message', function(message){
 })
 console.log(config);
 console.log(pkg);
-client.login(process.env.TOKEN);
+client.login();

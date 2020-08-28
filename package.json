@@ -1,7 +1,7 @@
 {
   "name": "minewarealpha",
   "version": "1.4.3",
-  "description": "",
+  "description": "This is a bot made for Mineware Systems (discord server) Link to the server: https://discord.gg/48Ymjsu",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,5 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.3.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narutopig/MinewareRepo.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/narutopig/MinewareRepo/issues"
+  },
+  "homepage": "https://github.com/narutopig/MinewareRepo#readme"
 }
