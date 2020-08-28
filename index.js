@@ -51,4 +51,4 @@ client.on('message', function(message){
 })
 console.log(config);
 console.log(pkg);
-client.login();
+client.login(token);
