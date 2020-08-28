@@ -120,10 +120,13 @@ client.on('ready', function(){
 });
 
 client.on('message', function(message){
-    if (message.member.roles.cache.find(r => r.name === "Muted")) {
+    if (!message.guild) return;
+    if (message.author.bot){
+        return;
+    }
+    if (message.member.roles.cache.some(role => role.name === 'Muted')){
         message.delete();
     }
-    if (!message.guild) return;
     if (!message.content.startsWith(config.prefix)) return;
     var command = message.content.split(' ')[0].slice(1);
     var args = message.content.split(' ').slice(1);
