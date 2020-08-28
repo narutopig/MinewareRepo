@@ -17,7 +17,6 @@ client.on('ready', function(){
 });
 
 client.on('message', function(message){
-    message.channel.send(client.channels.get("735598139100233740").id);
     if (!message.guild) return;
     if (message.author.bot){
         return;
