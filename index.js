@@ -2,18 +2,18 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const fs = require('fs');
 const fetch = require('node-fetch');
-let rawdata = fs.readFileSync('./resources/config.json');
-let config = JSON.parse(rawdata);
+let rawdata = fs.readFileSync('../package.json');
 rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
 const client = new Discord.Client();
 const token = process.env.token;
+const prefix = process.env.prefix;
 const https = require('https');
 const cmds = require('./cmds.js');
 
 client.on('ready', function(){
     console.log('Logged in.')
-    client.user.setActivity(`${config.prefix}help | v${pkg.version}`);
+    client.user.setActivity(`${prefix}help | v${pkg.version}`);
 });
 
 client.on('message', function(message){
@@ -24,7 +24,7 @@ client.on('message', function(message){
     if (message.member.roles.cache.some(role => role.name === 'Muted')){
         message.delete();
     }
-    if (!message.content.startsWith(config.prefix)) return;
+    if (!message.content.startsWith(prefix)) return;
     var command = message.content.split(' ')[0].slice(1);
     var args = message.content.split(' ').slice(1);
     switch (command.toUpperCase()){
