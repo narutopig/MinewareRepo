@@ -3,7 +3,7 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 let rawdata = fs.readFileSync('./resources/config.json');
 let config = JSON.parse(rawdata);
-rawdata = fs.readFileSync('./resources/package.json');
+rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
 rawdata = fs.readFileSync('./resources/eco.json');
 let eco = JSON.parse(rawdata);
@@ -18,6 +18,7 @@ client.on('ready', function(){
 });
 
 client.on('message', function(message){
+    message.channel.send(client.channels.get("735598139100233740").id);
     if (!message.guild) return;
     if (message.author.bot){
         return;

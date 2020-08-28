@@ -60,14 +60,10 @@ function stats(message){
         .setTitle('Stats')
         .setAuthor('Mineware Bot')
         .addFields(
-            {name: 'Ping', value: ping, inline: false},
-            {name: 'Uptime', value: uptime, inline: false},
-        )
-        .addFields(
             {name: 'Members', value: memberCount, inline: false},
         )
         .setTimestamp()
-        .setFooter('Brought to you by the Mineware Bot', config.avatar);
+        .setFooter(`Uptime: ${uptime}`, config.avatar);
 
     message.channel.send(embed);
 }
