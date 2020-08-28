@@ -52,4 +52,4 @@ client.on('message', function(message){
 })
 console.log(config);
 console.log(pkg);
-client.login(config.token);
+client.login(process.env.TOKEN);
