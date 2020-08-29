@@ -89,7 +89,6 @@ async function covid(message, args){ // sends a discord.MessageEmbed
             )
             .addFields(
                 {name: "Deaths:", value: formatNumber(data.death), inline: false},
-                {name: "Recovered", value: formatNumber(data.recovered),inline: false}
             )
             .setTimestamp()
             .setFooter(`Data from ${url}`, client.user.avatar_url);
