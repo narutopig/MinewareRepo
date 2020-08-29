@@ -100,13 +100,4 @@ function covid(message){ // sends a discord.MessageEmbed
     console.error(error.message);
 });
 }
-function bug(message,args){
-    /*
-    var bug = args.slice(1).join(" ");
-    const user = client.users.cache.get('537498289600200724');
-    user.send(bug);
-    */
-    message.channel.send('This command is being worked on right now!');
-}
-
 module.exports = {hello,help,purge,stats,covid,bug};
