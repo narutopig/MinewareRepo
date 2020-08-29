@@ -74,7 +74,10 @@ async function covid(message, args){ // sends a discord.MessageEmbed
     }
     try{
         let json = await fetch(url);
-        let data = await json.json()[0];
+        let data = await json.json();
+        if (url.endsWith('current.json')){
+            data = data[0];
+        }
         const covidEmbed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Covid-19 Stats')
@@ -91,8 +94,9 @@ async function covid(message, args){ // sends a discord.MessageEmbed
             .setFooter(`Data from ${url}`, client.user.avatar_url);
         message.channel.send(covidEmbed);
     }
-    catch{
+    catch(err){
         message.channel.send('Invalid url');
+        console.log(err);
     }
 }
 
