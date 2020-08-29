@@ -67,10 +67,10 @@ function stats(message){
 
     message.channel.send(embed);
 }
-function covid(message,args = -1){ // sends a discord.MessageEmbed
+function covid(message,args){ // sends a discord.MessageEmbed
     let url = `https://api.covidtracking.com/v1/us/current.json`;
-    if (args != -1){
-        let url = `https://api.covidtracking.com/v1/states/${args[0].toLowerCase()}/info.json`;
+    if (args){
+        url = `https://api.covidtracking.com/v1/states/${args[0].toLowerCase()}/info.json`;
     }
     https.get(url,(res) => {
     let body = "";
