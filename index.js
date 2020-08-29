@@ -2,7 +2,7 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const fs = require('fs');
 const fetch = require('node-fetch');
-let rawdata = fs.readFileSync('../package.json');
+let rawdata = fs.readFileSync('./package.json');
 rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
 const client = new Discord.Client();
