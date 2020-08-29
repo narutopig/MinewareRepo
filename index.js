@@ -94,11 +94,15 @@ async function covid(message, args){ // sends a discord.MessageEmbed
         message.channel.send(covidEmbed);
     }
     catch(err){
-        message.channel.send('Invalid url');
+        message.channel.send('Invalid url, try using a statecode (e.g AK for Alaska, CA for California)');
         console.log(err);
     }
 }
 
+function bug(message,args){
+    let msg = args.join(' ');
+    message.author.send(msg);
+}
 client.on('ready', function(){
     console.log('Logged in.')
     client.user.setActivity(`${prefix}help | v${pkg.version}`);
