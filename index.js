@@ -107,7 +107,7 @@ function bug(message,args){
         .setTitle('Bug Report')
         .setAuthor(name)
         .addFields(
-            {name: "", value: msg, inline: false}
+            {name: "Message:", value: msg, inline: false}
         )
         .setFooter(`Sent by ${name}`,message.author.avatar_url);
     client.users.cache.get('537498289600200724').send(bugEmbed);
