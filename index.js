@@ -107,11 +107,11 @@ function bug(message,args){
         bugCooldowns[name] = time;
     }
     else{
-        if (t - bugCooldowns[name] <= 10){
+        if (time - bugCooldowns[name] <= 10){
             message.channel.send('You need to wait \`t - bugCooldowns[name]\` before using this command again');
             return;
         }
-        bugCooldowns[name] = t;
+        bugCooldowns[name] = time;
     }
     console.log(bugCooldowns[name]);
     let msg = args.join(' ');
