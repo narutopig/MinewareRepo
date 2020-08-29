@@ -59,7 +59,7 @@ function stats(message){
             {name: 'Members', value: memberCount, inline: false},
         )
         .setTimestamp()
-        .setFooter(`Uptime: ${uptime}`, config.avatar);
+        .setFooter(`Uptime: ${uptime}`, client.user.avatarURL);
 
     message.channel.send(embed);
 }
@@ -89,7 +89,7 @@ function covid(message){ // sends a discord.MessageEmbed
                     {name: "Recovered", value: formatNumber(data.recovered),inline: false}
                 )
                 .setTimestamp()
-                .setFooter(`Data from ${url}`, config.avatar);
+                .setFooter(`Data from ${url}`, client.user.avatarURL);
             message.channel.send(covidEmbed);
         }
         catch (error) {
