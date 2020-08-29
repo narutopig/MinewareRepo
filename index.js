@@ -67,46 +67,33 @@ function stats(message){
 
     message.channel.send(embed);
 }
-function covid(message,args){ // sends a discord.MessageEmbed
+async function covid(message, args){ // sends a discord.MessageEmbed
     let url = `https://api.covidtracking.com/v1/us/current.json`;
-    if (args){
+    if (args.length > 0) {
         url = `https://api.covidtracking.com/v1/states/${args[0].toLowerCase()}/info.json`;
     }
-    https.get(url,(res) => {
-    let body = "";
-
-    res.on("data", (chunk) => {
-        body += chunk;
-    });
-
-    res.on("end", () => {
-        try {
-            let json = JSON.parse(body);
-            let data = json[0];
-            const covidEmbed = new Discord.MessageEmbed()
-                .setColor('#0099ff')
-                .setTitle('Covid-19 Stats')
-                .setAuthor('Mineware Bot')
-                .addFields(
-                    {name: "Positive:", value: formatNumber(data.positive), inline: false},
-                    {name: "Negative:", value: formatNumber(data.negative), inline: false}
-                )
-                .addFields(
-                    {name: "Deaths:", value: formatNumber(data.death), inline: false},
-                    {name: "Recovered", value: formatNumber(data.recovered),inline: false}
-                )
-                .setTimestamp()
-                .setFooter(`Data from ${url}`, client.user.avatar_url);
-            message.channel.send(covidEmbed);
-        }
-        catch (error) {
-            console.error(error.message);
-        };
-    });
-}).on("error", (error) => {
-    console.error(error.message);
-});
-}
+    try{
+        let json = await fetch(url);
+        let data = await json.json()[0];
+        const covidEmbed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('Covid-19 Stats')
+            .setAuthor('Mineware Bot')
+            .addFields(
+                {name: "Positive:", value: formatNumber(data.positive), inline: false},
+                {name: "Negative:", value: formatNumber(data.negative), inline: false}
+            )
+            .addFields(
+                {name: "Deaths:", value: formatNumber(data.death), inline: false},
+                {name: "Recovered", value: formatNumber(data.recovered),inline: false}
+            )
+            .setTimestamp()
+            .setFooter(`Data from ${url}`, client.user.avatar_url);
+        message.channel.send(covidEmbed);
+    }
+    catch{
+        message.channel.send('Invalid url');
+    }
 
 client.on('ready', function(){
     console.log('Logged in.')
