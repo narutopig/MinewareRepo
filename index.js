@@ -70,7 +70,7 @@ function stats(message){
 async function covid(message, args){ // sends a discord.MessageEmbed
     let url = `https://api.covidtracking.com/v1/us/current.json`;
     if (args.length > 0) {
-        url = `https://api.covidtracking.com/v1/states/${args[0].toLowerCase()}/info.json`;
+        url = `https://api.covidtracking.com/v1/states/${args[0].toLowerCase()}/current.json`;
     }
     try{
         let json = await fetch(url);
