@@ -78,6 +78,7 @@ async function covid(message, args){ // sends a discord.MessageEmbed
         if (url.endsWith('current.json')){
             data = data[0];
         }
+        console.log(data);
         const covidEmbed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Covid-19 Stats')
