@@ -101,9 +101,7 @@ async function covid(message, args){ // sends a discord.MessageEmbed
 }
 
 function bug(message,args){
-    let t = new Date();
-    let time = t.getTime();
-    time = Math.round(time);
+    let time = Math.floor(Date.now() / 1000);
     let name = message.member.user.tag;
     if (bugCooldowns[name] == null){
         bugCooldowns[name] = time;
