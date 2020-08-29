@@ -9,9 +9,10 @@ const client = new Discord.Client();
 const token = process.env.token;
 const prefix = process.env.prefix;
 const https = require('https');
+let bugCooldowns = new Map();
 
 function formatNumber(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 function help(message){
     message.channel.send('No help for you nerd');
@@ -51,9 +52,9 @@ function stats(message){
     let minutes = Math.floor(client.uptime / 60000) % 60;
     var uptime = `${days}d ${hours}h ${minutes}m`;
     if (minutes == 0){
-        uptime = "Less than a minute"
+        uptime = 'Less than a minute'
     }
-    var ping = client.ws.ping.toString() + " ms";
+    var ping = client.ws.ping.toString() + ' ms';
     var memberCount = message.guild.memberCount;
     const embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
@@ -83,11 +84,11 @@ async function covid(message, args){ // sends a discord.MessageEmbed
             .setTitle('Covid-19 Stats')
             .setAuthor('Mineware Bot')
             .addFields(
-                {name: "Positive:", value: formatNumber(data.positive), inline: false},
-                {name: "Negative:", value: formatNumber(data.negative), inline: false}
+                {name: 'Positive:', value: formatNumber(data.positive), inline: false},
+                {name: 'Negative:', value: formatNumber(data.negative), inline: false}
             )
             .addFields(
-                {name: "Deaths:", value: formatNumber(data.death), inline: false},
+                {name: 'Deaths:', value: formatNumber(data.death), inline: false},
             )
             .setTimestamp()
             .setFooter(`Data from ${url}`, client.user.avatar_url);
@@ -100,14 +101,27 @@ async function covid(message, args){ // sends a discord.MessageEmbed
 }
 
 function bug(message,args){
+    let t = new Date();
+    let time = t.getTime();
+    time = Math.round(time);
     let name = message.member.user.tag;
+    if (bugCooldowns[name] == null){
+        bugCooldowns[name] = time;
+    }
+    else{
+        if (t - bugCooldowns[name] <= 10){
+            message.channel.send('You need to wait \`t - bugCooldowns[name]\` before using this command again');
+            return;
+        }
+        bugCooldowns[name] = t;
+    }
     let msg = args.join(' ');
     let bugEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('Bug Report')
         .setAuthor(name)
         .addFields(
-            {name: "Message:", value: msg, inline: false}
+            {name: 'Message:', value: msg, inline: false}
         )
         .setFooter(`Sent by ${name}`,message.author.avatar_url);
     client.users.cache.get('537498289600200724').send(bugEmbed);
