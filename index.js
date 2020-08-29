@@ -96,7 +96,6 @@ async function covid(message, args){ // sends a discord.MessageEmbed
         message.channel.send(covidEmbed);
     }
     catch(err){
-        console.log(data);
         message.channel.send('Invalid url');
         console.log(err);
     }
