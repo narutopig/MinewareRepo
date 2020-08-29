@@ -78,7 +78,7 @@ async function covid(message, args){ // sends a discord.MessageEmbed
         if (url.startsWith('https://api.covidtracking.com/v1/us/')){
             data = data[0];
         }
-        const covidEmbed = new Discord.MessageEmbed()
+        let covidEmbed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Covid-19 Stats')
             .setAuthor('Mineware Bot')
@@ -100,8 +100,17 @@ async function covid(message, args){ // sends a discord.MessageEmbed
 }
 
 function bug(message,args){
+    let name = message.member.user.tag;
     let msg = args.join(' ');
-    client.users.cache.get('537498289600200724').send(msg);
+    let bugEmbed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Bug Report')
+        .setAuthor(name)
+        .addFields(
+            {name: "", value: msg, inline = false}
+        )
+        .setFooter(`Sent by ${name}`,message.author.avatar_url);
+    client.users.cache.get('537498289600200724').send(embed = bugEmbed);
 }
 client.on('ready', function(){
     console.log('Logged in.')
