@@ -115,6 +115,7 @@ function bug(message,args){
         }
         bugCooldowns[name] = t;
     }
+    console.log(bugCooldowns[name]);
     let msg = args.join(' ');
     let bugEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
