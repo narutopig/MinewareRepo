@@ -94,6 +94,7 @@ async function covid(message, args){ // sends a discord.MessageEmbed
     catch{
         message.channel.send('Invalid url');
     }
+}
 
 client.on('ready', function(){
     console.log('Logged in.')
