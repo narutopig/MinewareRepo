@@ -100,4 +100,4 @@ function covid(message){ // sends a discord.MessageEmbed
     console.error(error.message);
 });
 }
-module.exports = {hello,help,purge,stats,covid,bug};
+module.exports = {hello,help,purge,stats,covid};
