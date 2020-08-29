@@ -75,7 +75,7 @@ async function covid(message, args){ // sends a discord.MessageEmbed
     try{
         let json = await fetch(url);
         let data = await json.json();
-        if (args.length > 0){
+        if (url.startsWith('https://api.covidtracking.com/v1/states/')){
             data = data[0];
         }
         console.log(data);
