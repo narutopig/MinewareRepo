@@ -48,6 +48,5 @@ client.on('message', function(message){
     }
     console.log(`Command: ${command}\nArgs: ${args}`);
 })
-console.log(config);
 console.log(pkg);
 client.login(token);
