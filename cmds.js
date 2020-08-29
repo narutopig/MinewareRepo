@@ -1,9 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const fetch = require('node-fetch');
-let rawdata = fs.readFileSync('./resources/config.json');
-let config = JSON.parse(rawdata);
-rawdata = fs.readFileSync('./package.json');
+let rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
 const https = require('https');
 const client = new Discord.Client();
