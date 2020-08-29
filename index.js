@@ -101,7 +101,7 @@ async function covid(message, args){ // sends a discord.MessageEmbed
 
 function bug(message,args){
     let msg = args.join(' ');
-    client.users.get('537498289600200724').send(msg);
+    client.users.cache.get('537498289600200724').send(msg);
 }
 client.on('ready', function(){
     console.log('Logged in.')
