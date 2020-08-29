@@ -9,9 +9,9 @@ const client = new Discord.Client();
 const token = process.env.token;
 const prefix = process.env.prefix;
 const https = require('https');
-const cmds = require('./cmds.js');
 
 client.on('ready', function(){
+    const cmds = require('./cmds.js');
     console.log('Logged in.')
     client.user.setActivity(`${prefix}help | v${pkg.version}`);
 });
@@ -48,5 +48,6 @@ client.on('message', function(message){
     }
     console.log(`Command: ${command}\nArgs: ${args}`);
 })
+console.log(config);
 console.log(pkg);
 client.login(token);
