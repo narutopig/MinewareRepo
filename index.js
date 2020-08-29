@@ -10,45 +10,6 @@ const token = process.env.token;
 const prefix = process.env.prefix;
 const https = require('https');
 
-client.on('ready', function(){
-    console.log('Logged in.')
-    client.user.setActivity(`${prefix}help | v${pkg.version}`);
-});
-
-client.on('message', function(message){
-    if (!message.guild) return;
-    if (message.author.bot){
-        return;
-    }
-    if (message.member.roles.cache.some(role => role.name === 'Muted')){
-        message.delete();
-    }
-    if (!message.content.startsWith(prefix)) return;
-    var command = message.content.split(' ')[0].slice(1);
-    var args = message.content.split(' ').slice(1);
-    switch (command.toUpperCase()){
-        case 'HELP':
-            help(message);
-            break;
-        case 'HI':
-            hello(message);
-            break;
-        case 'PURGE':
-            purge(message,args);
-            break;
-        case 'STATS':
-            stats(message);
-            break;
-        case 'COVID':
-            covid(message);
-            break;
-        case 'BUG':
-            bug(message,args);
-    }
-    console.log(`Command: ${command}\nArgs: ${args}`);
-})
-
-
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -143,5 +104,43 @@ function covid(message){ // sends a discord.MessageEmbed
     console.error(error.message);
 });
 }
+
+client.on('ready', function(){
+    console.log('Logged in.')
+    client.user.setActivity(`${prefix}help | v${pkg.version}`);
+});
+
+client.on('message', function(message){
+    if (!message.guild) return;
+    if (message.author.bot){
+        return;
+    }
+    if (message.member.roles.cache.some(role => role.name === 'Muted')){
+        message.delete();
+    }
+    if (!message.content.startsWith(prefix)) return;
+    var command = message.content.split(' ')[0].slice(1);
+    var args = message.content.split(' ').slice(1);
+    switch (command.toUpperCase()){
+        case 'HELP':
+            help(message);
+            break;
+        case 'HI':
+            hello(message);
+            break;
+        case 'PURGE':
+            purge(message,args);
+            break;
+        case 'STATS':
+            stats(message);
+            break;
+        case 'COVID':
+            covid(message);
+            break;
+        case 'BUG':
+            bug(message,args);
+    }
+    console.log(`Command: ${command}\nArgs: ${args}`);
+})
 console.log(pkg);
 client.login(token);
