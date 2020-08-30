@@ -29,7 +29,7 @@ function help(message){
         )
         .setTimestamp()
         .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
-    message.channel.send();
+    message.channel.send(embed);
 }
 function hello(message){
     message.channel.send('Hello!');
@@ -64,12 +64,12 @@ function stats(message){
     let days = Math.floor(client.uptime / 86400000);
     let hours = Math.floor(client.uptime / 3600000) % 24;
     let minutes = Math.floor(client.uptime / 60000) % 60;
-    var uptime = `${days}d ${hours}h ${minutes}m`;
+    let uptime = `${days}d ${hours}h ${minutes}m`;
     if (minutes == 0){
         uptime = 'Less than a minute'
     }
-    var ping = client.ws.ping.toString() + ' ms';
-    var memberCount = message.guild.memberCount;
+    let ping = client.ws.ping.toString() + ' ms';
+    let memberCount = message.guild.memberCount;
     const embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('Stats')
@@ -154,8 +154,8 @@ client.on('message', function(message){
         message.delete();
     }
     if (!message.content.startsWith(prefix)) return;
-    var command = message.content.split(' ')[0].slice(1);
-    var args = message.content.split(' ').slice(1);
+    let command = message.content.split(' ')[0].slice(1);
+    let args = message.content.split(' ').slice(1);
     switch (command.toUpperCase()){
         case 'HELP':
             help(message);
