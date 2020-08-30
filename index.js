@@ -15,7 +15,21 @@ function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 function help(message){
-    message.channel.send('No help for you nerd');
+    let embed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Help')
+        .setAuthor('Mineware Bot')
+        .addFields(
+            {name: 'help', value: 'Brings up this message', inline: false},
+            {name: 'hi', value: 'Says hello', inline: false},
+            {name: 'purge', value: 'Deletes some amount of messages. Requires the \`MANAGE_MESSAGES\ permission`', inline: false},
+            {name: 'stats', value: 'Brings up stats like the server members, uptime, etc', inline: false},
+            {name: 'covid', value: 'Gets the Covid-19 stats for the US or a state when given a statecode', inline: false},
+            {name: 'bug', value: 'Submit a bug', inline: false}
+        )
+        .setTimestamp()
+        .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
+    message.channel.send();
 }
 function hello(message){
     message.channel.send('Hello!');
@@ -62,6 +76,7 @@ function stats(message){
         .setAuthor('Mineware Bot')
         .addFields(
             {name: 'Members', value: memberCount, inline: false},
+            {name: 'Ping', value: ping, inline: false}
         )
         .setTimestamp()
         .setFooter(`Uptime: ${uptime}`, client.user.avatar_url);
@@ -107,8 +122,8 @@ function bug(message,args){
         bugCooldowns[name] = time;
     }
     else{
-        if (time - bugCooldowns[name] <= 10){
-            message.channel.send(`You need to wait \`${10 - (time - bugCooldowns[name])}s\` before using this command again`);
+        if (time - bugCooldowns[name] <= 30){
+            message.channel.send(`You need to wait \`${30 - (time - bugCooldowns[name])}s\` before using this command again`);
             return;
         }
         bugCooldowns[name] = time;
@@ -160,7 +175,7 @@ client.on('message', function(message){
         case 'BUG':
             bug(message,args);
     }
-    console.log(`Command: ${command}\nArgs: ${args}`);
+    console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
 })
 console.log(pkg);
 client.login(token);
