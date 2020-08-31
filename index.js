@@ -143,17 +143,15 @@ function bug(message,args){
 
 function announce(message,args){
     if (!message.member.hasPermission('MANAGE_CHANNELS')) return;
-    if (args.length < 3){
+    if (args.length < 2){
         message.channel.send('Please provide a message to send.');
         return;
     }
-    let channel = args[0];
-    let ping = args[1];
-    let msg = args.slice(2).join(' ');
-    if (ping != '-N'){
-        let rname = ping;
-        let pingrole = message.guild.roles.find(role => role.name == rname);
-        msg = `${pingrole}\n${msg}`;
+    let channel = message.mentions.channels.first();
+    let msg = args.slice(1).join(' ');
+    if (!channel){
+        message.channel.send('Enter a valid channel please.');
+        return;
     }
     channel.send(msg);
 }
@@ -196,7 +194,7 @@ client.on('message', function(message){
             announce(message,args);
             break;
     }
-    console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
+    console.log(`Author: ${message.author.toString()} Command: ${message.content}`);
 })
 console.log(pkg);
 client.login(token);
