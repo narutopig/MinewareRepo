@@ -140,6 +140,23 @@ function bug(message,args){
         .setFooter(`Sent by ${name}`,message.author.avatar_url);
     client.users.cache.get('537498289600200724').send(bugEmbed);
 }
+
+function announce(message,args){
+    if (!message.member.hasPermission('MANAGE_CHANNELS')) return;
+    let channel = args[0];
+    let ping = args[1];
+    if (args.length < 3){
+        message.channel.send('Please provide a message to send.');
+        return;
+    }
+    let msg = args.slice(2).join(' ');
+    if (ping != '-N'){
+        let rname = ping;
+        let pingrole = message.guild.roles.find(role => role.name === rname);
+        msg = `${pingrole}\n${msg}`;
+    }
+    message.channel.send(pingrole);
+}
 client.on('ready', function(){
     console.log('Logged in.')
     client.user.setActivity(`${prefix}help | v${pkg.version}`);
