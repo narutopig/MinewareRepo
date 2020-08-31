@@ -155,7 +155,7 @@ function announce(message,args){
         let pingrole = message.guild.roles.find(role => role.name === rname);
         msg = `${pingrole}\n${msg}`;
     }
-    message.channel.send(pingrole);
+    channel.send(msg);
 }
 client.on('ready', function(){
     console.log('Logged in.')
