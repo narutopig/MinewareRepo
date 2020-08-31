@@ -152,11 +152,12 @@ function announce(message,args){
     let msg = args.slice(2).join(' ');
     if (ping != '-N'){
         let rname = ping;
-        let pingrole = message.guild.roles.find(role => role.name === rname);
+        let pingrole = message.guild.roles.find(role => role.name == rname);
         msg = `${pingrole}\n${msg}`;
     }
     channel.send(msg);
 }
+
 client.on('ready', function(){
     console.log('Logged in.')
     client.user.setActivity(`${prefix}help | v${pkg.version}`);
