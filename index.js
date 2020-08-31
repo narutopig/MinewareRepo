@@ -143,12 +143,12 @@ function bug(message,args){
 
 function announce(message,args){
     if (!message.member.hasPermission('MANAGE_CHANNELS')) return;
-    let channel = args[0];
-    let ping = args[1];
     if (args.length < 3){
         message.channel.send('Please provide a message to send.');
         return;
     }
+    let channel = args[0];
+    let ping = args[1];
     let msg = args.slice(2).join(' ');
     if (ping != '-N'){
         let rname = ping;
@@ -192,6 +192,9 @@ client.on('message', function(message){
             break;
         case 'BUG':
             bug(message,args);
+        case 'ANNOUNCE':
+            announce(message,args);
+            break;
     }
     console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
 })
