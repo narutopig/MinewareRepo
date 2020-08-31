@@ -156,6 +156,11 @@ function announce(message,args){
     channel.send(msg);
 }
 
+function rules(message){
+    let author = message.author;
+    var data = fs.readFileSync('rules.txt', 'utf8');
+    author.send(data);
+}
 client.on('ready', function(){
     console.log('Logged in.')
     client.user.setActivity(`${prefix}help | v${pkg.version}`);
@@ -192,6 +197,9 @@ client.on('message', function(message){
             bug(message,args);
         case 'ANNOUNCE':
             announce(message,args);
+            break;
+        case 'RULES':
+            rules(message);
             break;
     }
     console.log(`Author: ${message.author.toString()} Command: ${message.content}`);
