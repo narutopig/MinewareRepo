@@ -161,10 +161,11 @@ function announce(message,args){
 }
 
 function rules(message){
-    let author = message.author;
+    let aID = message.author.id;
     var data = fs.readFileSync('rules.txt', 'utf8');
-    author.send(data);
+    client.users.cache.get(aID.toString()).send(data);
 }
+
 client.on('ready', function(){
     console.log('Logged in.')
     client.user.setActivity(`${prefix}help | v${pkg.version}`);
