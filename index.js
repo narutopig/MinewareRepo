@@ -149,6 +149,10 @@ function announce(message,args){
     }
     let channel = message.mentions.channels.first();
     let msg = args.slice(1).join(' ');
+    if (args[1].startsWith('-P')){
+        msg = args.slice(2).join(' ');
+        msg = '@everyone\n' + msg;
+    }
     if (!channel){
         message.channel.send('Enter a valid channel please.');
         return;
