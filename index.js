@@ -25,7 +25,8 @@ function help(message){
             {name: 'purge', value: 'Deletes some amount of messages. Requires the \`MANAGE_MESSAGES\` permission', inline: false},
             {name: 'stats', value: 'Brings up stats like the server members, uptime, etc', inline: false},
             {name: 'covid', value: 'Gets the Covid-19 stats for the US or a state when given a statecode', inline: false},
-            {name: 'bug', value: 'Submit a bug', inline: false}
+            {name: 'bug', value: 'Submit a bug', inline: false},
+            {name: 'announce', value: 'Send an announcement! (requires \`MANAGE_CHANNELS\` permission)'}
         )
         .setTimestamp()
         .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
