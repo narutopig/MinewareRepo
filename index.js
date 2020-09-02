@@ -8,8 +8,9 @@ let pkg = JSON.parse(rawdata);
 const client = new Discord.Client();
 const token = process.env.token;
 const prefix = process.env.prefix;
-const https = require('https');
 let bugCooldowns = new Map();
+let announceCooldowns = new Map();
+let purgeCooldowns = new Map();
 
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -20,6 +21,7 @@ function help(message){
         .setTitle('Help')
         .setAuthor('Mineware Bot')
         .addFields(
+            {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false}
             {name: 'help', value: 'Brings up this message', inline: false},
             {name: 'hi', value: 'Says hello', inline: false},
             {name: 'purge', value: 'Deletes some amount of messages. Requires the \`MANAGE_MESSAGES\` permission', inline: false},
@@ -36,29 +38,37 @@ function hello(message){
     message.channel.send('Hello!');
 }
 function purge(message,args){
-    if (message.member.hasPermission('MANAGE_MESSAGES')){
-        try{
-            let amt = parseInt(args[0]);
-            if (amt < 1){
-                message.channel.send('Value must be at least 1');
-            }
-            let val = Math.min(100,amt);
-            let temp = amt;
-            while (temp > 0){
-                temp = temp - val;
-                message.channel.bulkDelete(val);
-                val = Math.min(100,amt);
-            }
-            console.log(val,temp);
-            message.channel.send('Success!');
-        }
-        catch(err){
-            console.log(err);
-            message.channel.send('Something went wrong');
-        }
+    if (!message.member.hasPermission('MANAGE_MESSAGES')) return;
+    let time = Math.floor(Date.now() / 1000);
+    let name = message.member.user.tag;
+    if (purgeCooldowns[name] == null){
+        purgeCooldowns[name] = time;
     }
     else{
-        message.channel.send('You can\' do that!');
+        if (time - purgeCooldowns[name] <= 60){
+            message.channel.send(`You need to wait \`${60 - (time - purgeCooldowns[name])}s\` before using this command again`);
+            return;
+        }
+        purgeCooldowns[name] = time;
+    }
+    try{
+        let amt = parseInt(args[0]);
+        if (amt < 1){
+            message.channel.send('Value must be at least 1');
+        }
+        let val = Math.min(100,amt);
+        let temp = amt;
+        while (temp > 0){
+            temp = temp - val;
+            message.channel.bulkDelete(val);
+            val = Math.min(100,amt);
+        }
+        console.log(val,temp);
+        message.channel.send('Success!');
+    }
+    catch(err){
+        console.log(err);
+        message.channel.send('Something went wrong');
     }
 }
 function stats(message){
@@ -129,7 +139,6 @@ function bug(message,args){
         }
         bugCooldowns[name] = time;
     }
-    console.log(bugCooldowns[name]);
     let msg = args.join(' ');
     let bugEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
@@ -144,6 +153,18 @@ function bug(message,args){
 
 function announce(message,args){
     if (!message.member.hasPermission('MANAGE_CHANNELS')) return;
+    let time = Math.floor(Date.now() / 1000);
+    let name = message.member.user.tag;
+    if (announceCooldowns[name] == null){
+        announceCooldowns[name] = time;
+    }
+    else{
+        if (time - announceCooldowns[name] <= 60){
+            message.channel.send(`You need to wait \`${60 - (time - announceCooldowns[name])}s\` before using this command again`);
+            return;
+        }
+        announceCooldowns[name] = time;
+    }
     if (args.length < 2){
         message.channel.send('Please provide a message to send.');
         return;
