@@ -33,10 +33,11 @@ function help(message,args){
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
             {name: `Text`, value: `Text commands (no paramaters)`, inline: false},
             {name: `Moderation`, value: `Moderation commands (needs special permissions)`, inline: false},
-            {name: `Bug`, value: `Report bugs`, inline: false}
+            {name: `Bugs`, value: `Report bugs`, inline: false}
         );
     }
     else{
+        console.log(args[0].toUpperCase());
         switch (args[0].toUpperCase()){
             case 'MODERATION':
                 embed.addFields(
