@@ -23,12 +23,7 @@ function help(message,args){
         .setAuthor(`${client.user.username}`)
         .setTimestamp()
         .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
-    let isEmpty = true;
     if (args == null || args.length == 0){
-        isEmpty = false;
-        console.log(`sdafdf ${args}`);
-    }
-    if (isEmpty == true){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
             {name: `Text`, value: `Text commands (no paramaters)`, inline: false},
@@ -268,8 +263,10 @@ client.on('message', function(message){
     if (message.member.roles.cache.some(role => role.name == 'Muted')) message.delete();
     if (!message.content.startsWith(prefix)) return;
 
-    let command = message.content.split(' ')[0].slice(1);
-    let args = message.content.split(' ').slice(1);
+    let string = message.content.replace(/ +/g, ' ');
+    let temp = string.split(' ');
+    let command = temp[0].slice(1);
+    let args = temp.slice(1);
     switch (command.toUpperCase()){
         case 'HELP':
             help(message);
