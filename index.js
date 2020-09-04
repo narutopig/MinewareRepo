@@ -24,8 +24,9 @@ function help(message,args){
         .setTimestamp()
         .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
     let isEmpty = true;
-    if (args.length == 0){
+    if (args == null && args.length == 0){
         isEmpty = false;
+        console.log(`sdafdf ${args}`);
     }
     if (isEmpty == true){
         embed.addFields(
