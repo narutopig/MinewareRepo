@@ -32,7 +32,7 @@ function help(message,args){
         isEmpty = false;
     }
 
-    if (isEmpty){
+    if (isEmpty == true){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
             {name: `Text commands`, value: `Text commands (no paramaters)`, inline: false},
@@ -40,61 +40,63 @@ function help(message,args){
             {name: `Bug Report`, value: `Report bugs`, inline: false}
         );
     }
-    switch (argsu[0]){
-        case 'MODERATION':
-            embed.addFields(
-                {name: `purge`, value: `Deletes messages`, inline: false},
-                {name: `announce`, value: `Make an announcement`, inline: false}
-            );
-            break;
-        case 'TEXT COMMANDS':
-            embed.addFields(
-                {name: `hi`, value: `Hello!`, inline: false},
-                {name: `stats`, value: `Provides some bot stats`, inline: false},
-                {name: `covid`, value: `Gets covid stats for a US state or US`, inline: false}
-            )
-            break;
-        case 'BUG REPORT':
-            embed.addFields(
-                {name: `bug`, value: `Report a bug!`, inline: false}
-            )
-            break;
-        case 'PURGE':
-            embed.addFields(
-                {name: `Arguments`, value: `Arguments: amt (int)`, inline: false},
-                {name: `Required Permissions`, value: `None`, inilne: false}
-            )
-            break;
-        case 'ANNOUNCE':
-            embed.addFields(
-                {name: `announce`, value: `Arguments: Channel, args (words of the message)`, inline: false},
-                {name: `Required Permissions`, value: `\`MANAGE_CHANNELS\``, inline: false}
-            )
-            break;
-        case 'HI':
-            embed.addFields(
-                {name: `hi`, value: `Arguments: None`, inline: false},
-                {name: `Required Permissions`, value: `None`, inline: false}
-            )
-            break;
-        case 'STATS':
-            embed.addFields(
-                {name: `stats`, value: `Arguments: None`, inline: false},
-                {name: `Required Permissions`, value: `None`, inline: false}
-            )
-            break;
-        case 'COVID':
-            embed.addFields(
-                {name: `covid`, value: `Arguments: statecode (optional)`, inline: false},
-                {name: `Required Permissions`, value: `None`, inline: false}
-            )
-            break;
-        case 'BUG':
-            embed.addFields(
-                {name: `bug`, value: `Arguments: args (words)`, inline: false},
-                {name: `Required Permissions`, value: `None`, inline: false}
-            )
-            break;
+    else{
+        switch (argsu[0]){
+            case 'MODERATION':
+                embed.addFields(
+                    {name: `purge`, value: `Deletes messages`, inline: false},
+                    {name: `announce`, value: `Make an announcement`, inline: false}
+                );
+                break;
+            case 'TEXT COMMANDS':
+                embed.addFields(
+                    {name: `hi`, value: `Hello!`, inline: false},
+                    {name: `stats`, value: `Provides some bot stats`, inline: false},
+                    {name: `covid`, value: `Gets covid stats for a US state or US`, inline: false}
+                )
+                break;
+            case 'BUG REPORT':
+                embed.addFields(
+                    {name: `bug`, value: `Report a bug!`, inline: false}
+                )
+                break;
+            case 'PURGE':
+                embed.addFields(
+                    {name: `Arguments`, value: `Arguments: amt (int)`, inline: false},
+                    {name: `Required Permissions`, value: `None`, inilne: false}
+                )
+                break;
+            case 'ANNOUNCE':
+                embed.addFields(
+                    {name: `announce`, value: `Arguments: Channel, args (words of the message)`, inline: false},
+                    {name: `Required Permissions`, value: `\`MANAGE_CHANNELS\``, inline: false}
+                )
+                break;
+            case 'HI':
+                embed.addFields(
+                    {name: `hi`, value: `Arguments: None`, inline: false},
+                    {name: `Required Permissions`, value: `None`, inline: false}
+                )
+                break;
+            case 'STATS':
+                embed.addFields(
+                    {name: `stats`, value: `Arguments: None`, inline: false},
+                    {name: `Required Permissions`, value: `None`, inline: false}
+                )
+                break;
+            case 'COVID':
+                embed.addFields(
+                    {name: `covid`, value: `Arguments: statecode (optional)`, inline: false},
+                    {name: `Required Permissions`, value: `None`, inline: false}
+                )
+                break;
+            case 'BUG':
+                embed.addFields(
+                    {name: `bug`, value: `Arguments: args (words)`, inline: false},
+                    {name: `Required Permissions`, value: `None`, inline: false}
+                )
+                break;
+        }
     }
         
     message.channel.send(embed);
