@@ -24,10 +24,9 @@ function help(message,args){
         .setTimestamp()
         .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
     let isEmpty = true;
-    if (args != null){
+    if (args.length == 0){
         isEmpty = false;
     }
-
     if (isEmpty == true){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
@@ -37,7 +36,6 @@ function help(message,args){
         );
     }
     else{
-        console.log(args[0].toUpperCase());
         switch (args[0].toUpperCase()){
             case 'MODERATION':
                 embed.addFields(
