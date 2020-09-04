@@ -258,7 +258,7 @@ function announce(message,args){
 }
 
 client.on('ready', function(){
-    console.log(`Logged in as ${client.user.name}`);
+    console.log(`Logged in as ${client.user.username}`);
     client.user.setActivity(`${prefix}help | v${pkg.version}`);
 });
 
