@@ -1,7 +1,7 @@
 {
-  "name": "minewarebot",
+  "name": "utilitiesbot",
   "version": "1.4.6",
-  "description": "This is a bot made for Mineware Systems (discord server) Link to the server: https://discord.gg/48Ymjsu",
+  "description": "Epic bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,11 +17,11 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/narutopig/MinewareRepo.git"
+    "url": "git+https://github.com/narutopig/utilitiesbot.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/narutopig/MinewareRepo/issues"
+    "url": "https://github.com/narutopig/utilitiesbot/issues"
   },
-  "homepage": "https://github.com/narutopig/MinewareRepo#readme"
+  "homepage": "https://github.com/narutopig/utilities#readme"
 }
