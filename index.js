@@ -23,39 +23,35 @@ function help(message,args){
         .setAuthor(`${client.user.username}`)
         .setTimestamp()
         .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
-    let argsu = []; // uppercase args
     let isEmpty = true;
     if (args != null){
-        for (let i = 0; i < args.length; i++){
-            argsu.push(args[i].toString().toUpperCase());
-        }
         isEmpty = false;
     }
 
     if (isEmpty == true){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
-            {name: `Text commands`, value: `Text commands (no paramaters)`, inline: false},
+            {name: `Text`, value: `Text commands (no paramaters)`, inline: false},
             {name: `Moderation`, value: `Moderation commands (needs special permissions)`, inline: false},
-            {name: `Bug Report`, value: `Report bugs`, inline: false}
+            {name: `Bug`, value: `Report bugs`, inline: false}
         );
     }
     else{
-        switch (argsu[0]){
+        switch (args[0].toUpperCase()){
             case 'MODERATION':
                 embed.addFields(
                     {name: `purge`, value: `Deletes messages`, inline: false},
                     {name: `announce`, value: `Make an announcement`, inline: false}
                 );
                 break;
-            case 'TEXT COMMANDS':
+            case 'TEXT':
                 embed.addFields(
                     {name: `hi`, value: `Hello!`, inline: false},
                     {name: `stats`, value: `Provides some bot stats`, inline: false},
                     {name: `covid`, value: `Gets covid stats for a US state or US`, inline: false}
                 )
                 break;
-            case 'BUG REPORT':
+            case 'BUGS':
                 embed.addFields(
                     {name: `bug`, value: `Report a bug!`, inline: false}
                 )
