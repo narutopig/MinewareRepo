@@ -24,10 +24,12 @@ function help(message,args){
         .setTimestamp()
         .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
     let argsu = []; // uppercase args
-    for (let i = 0; i < args.length; i++){
-        argsu.push(args[i].toString().toUpperCase());
+    if (args != null){
+        for (let i = 0; i < args.length; i++){
+            argsu.push(args[i].toString().toUpperCase());
+        }
     }
-    if (!argsu){
+    if (argsu == []){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
             {name: `Text commands`, value: `Text commands (no paramaters)`, inline: true},
