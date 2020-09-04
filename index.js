@@ -198,7 +198,7 @@ client.on('message', function(message){
     if (message.author.bot){
         return;
     }
-    if (message.member.roles.cache.some(role => role.name === 'Muted')){
+    if (message.member.roles.cache.some(role => role.name == 'Muted')){
         message.delete();
     }
     if (!message.content.startsWith(prefix)) return;
