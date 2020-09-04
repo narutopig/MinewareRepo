@@ -30,8 +30,8 @@ function help(message,args){
     if (!argsu){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
-            {name: `Text commands`, value: `Text commands (no paramaters)`, inline = true},
-            {name: `Moderation`, value: `Moderation commands (needs special permissions)`, inline = true},
+            {name: `Text commands`, value: `Text commands (no paramaters)`, inline: true},
+            {name: `Moderation`, value: `Moderation commands (needs special permissions)`, inline: true},
             {name: `Bug Report`, value: `Report bugs`, inline: true}
         );
     }
@@ -56,7 +56,7 @@ function help(message,args){
             break;
         case 'PURGE':
             embed.addFields(
-                {name: `Arguments`, value: `Arguments: amt (int)`, inline:false},
+                {name: `Arguments`, value: `Arguments: amt (int)`, inline: false},
                 {name: `Required Permissions`, value: `None`, inilne: false}
             )
             break;
