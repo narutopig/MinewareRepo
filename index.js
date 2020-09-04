@@ -35,9 +35,9 @@ function help(message,args){
     if (isEmpty){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
-            {name: `Text commands`, value: `Text commands (no paramaters)`, inline: true},
-            {name: `Moderation`, value: `Moderation commands (needs special permissions)`, inline: true},
-            {name: `Bug Report`, value: `Report bugs`, inline: true}
+            {name: `Text commands`, value: `Text commands (no paramaters)`, inline: false},
+            {name: `Moderation`, value: `Moderation commands (needs special permissions)`, inline: false},
+            {name: `Bug Report`, value: `Report bugs`, inline: false}
         );
     }
     switch (argsu[0]){
