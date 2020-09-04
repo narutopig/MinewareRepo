@@ -29,7 +29,7 @@ function help(message,args){
             argsu.push(args[i].toString().toUpperCase());
         }
     }
-    if (argsu == []){
+    if (argsu == null){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
             {name: `Text commands`, value: `Text commands (no paramaters)`, inline: true},
