@@ -268,7 +268,7 @@ client.on('message', function(message){
     let args = temp.slice(1);
     switch (command.toUpperCase()){
         case 'HELP':
-            help(message, args);
+            help(message,args);
             break;
 
         case 'HI':
