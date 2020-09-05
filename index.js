@@ -196,7 +196,9 @@ async function covid(message, args){ // sends a discord.MessageEmbed
                 if (v == undefined){
                     v = 'N/A';
                 }
-                else
+                else{
+                    v = formatNumber(v);
+                }
                 embed.addFields(
                     {name: `${upQuery}:`, value: v, inline: false}
                 );
