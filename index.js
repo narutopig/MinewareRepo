@@ -23,7 +23,7 @@ function help(message,args){
         .setAuthor(`${client.user.username}`)
         .setTimestamp()
         .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
-    if (args.length == 0){
+    if (args === undefined || args.length == 0){
         embed.addFields(
             {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
             {name: `Text`, value: `Text commands (no paramaters)`, inline: false},
