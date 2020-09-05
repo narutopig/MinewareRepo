@@ -294,7 +294,7 @@ client.on('message', function(message){
             announce(message,args);
             break;
     }
-    console.log(`Author: ${message.author.toString()} Command: ${command} Args: [${args.join(',')}]`);
+    console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
 })
 
 console.log(pkg);
