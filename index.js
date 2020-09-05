@@ -264,11 +264,11 @@ client.on('message', function(message){
 
     let string = message.content.replace(/ +/g, ' ');
     let temp = string.split(' ');
-    let command = temp[0].slice(1);
+    let command = temp[0];
     let args = temp.slice(1);
     switch (command.toUpperCase()){
         case 'HELP':
-            help(message);
+            help(message, args);
             break;
 
         case 'HI':
