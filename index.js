@@ -274,7 +274,7 @@ function announce(message,args){
 
 client.on('ready', function(){
     console.log(`Logged in as ${client.user.username}`);
-    client.user.setActivity(`${prefix}help | ${client.users.length}`);
+    client.user.setActivity(`${prefix}help | ${client.users.size}`);
 });
 
 client.on('message', function(message){
