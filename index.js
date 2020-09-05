@@ -48,7 +48,7 @@ function help(message,args){
                 break;
             case 'BUGS':
                 embed.addFields(
-                    {name: `bug`, value: `Report a bug!`, inline: false}
+                    {name: `bugs`, value: `Report a bug!`, inline: false}
                 )
                 break;
             case 'PURGE':
@@ -219,7 +219,7 @@ function bug(message,args){
 
 function announce(message,args){
     if (!message.member.hasPermission('MANAGE_CHANNELS')){
-        message.channel.send(`You need the \`MANGE_CHANNELS\` permission to use this command`);
+        message.channel.send(`You need the \`MANAGE_CHANNELS\` permission to use this command`);
         return;
     }
     let time = Math.floor(Date.now() / 1000);
