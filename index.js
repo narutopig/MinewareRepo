@@ -289,7 +289,7 @@ async function aqi(message,args){
 }
 client.on('ready', function(){
     console.log(`Logged in as ${client.user.username}`);
-    client.user.setActivity(`${prefix}help | ${client.users.cache.size} members`);
+    client.user.setActivity(`${prefix}help | ${client.users.cache.size} users`);
 });
 
 client.on('message', function(message){
