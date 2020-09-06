@@ -54,7 +54,7 @@ function help(message,args){
             case 'PURGE':
                 embed.addFields(
                     {name: `Arguments`, value: `Arguments: amt (int)`, inline: false},
-                    {name: `Required Permissions`, value: `None`, inilne: false}
+                    {name: `Required Permissions`, value: `None`, inline: false}
                 )
                 break;
             case 'ANNOUNCE':
@@ -87,6 +87,17 @@ function help(message,args){
                     {name: `Required Permissions`, value: `None`, inline: false}
                 )
                 break;
+            case 'INVITE':
+                embed.addFields(
+                    {name: `invite`, value: `Arguments: None`, inline: false},
+                    {name: `Required Permissions`, value: 'None', inline: false}
+                )
+                break;
+            case 'AQI':
+                embed.addFields(
+                    {name: 'AQI', value: 'Arguments: city', inline: false},
+                    {name: 'Required Permissions', value: 'None', inline: false}
+                )
         }
     }
     message.channel.send(embed);
@@ -277,11 +288,26 @@ function invite(message){
 }
 
 async function aqi(message,args){
+    if (args == undefined || args.length == 0){
+        message.channel.send('Please provide a city');
+        return;
+    }
     let url = `http://api.waqi.info/feed/${args[0].toLowerCase()}/?token=demo`;
     try{
         let json = await fetch(url);
         let data = await json.json();
-        console.log(data);
+        let info = data['data'];
+        embed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('Covid-19 Stats')
+            .setAuthor(`${client.user.username}`)
+            .setTimestamp()
+            .setFooter(`Data from ${url}`, client.user.avatar_url)
+            .addFields(
+                {name: `Status:`, value: `${data['status']}`, inline: false},
+                {name: `AQI:`, value: `${info['aqi']}`, inline: false}
+            );
+        message.channel.send(embed);
     }
     catch{
         message.channel.send('Invalid city :(');
