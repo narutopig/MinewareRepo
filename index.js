@@ -11,7 +11,7 @@ const prefix = process.env.prefix;
 let bugCooldowns = new Map();
 let announceCooldowns = new Map();
 let purgeCooldowns = new Map();
-let invite = 'https://discord.com/api/oauth2/authorize?client_id=743529355107500033&permissions=8&scope=bot';
+let invitelink = 'https://discord.com/api/oauth2/authorize?client_id=743529355107500033&permissions=8&scope=bot';
 
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -272,6 +272,21 @@ function announce(message,args){
     channel.send(msg);
 }
 
+function invite(message){
+    message.channel.send(`Use this link to invite me to your server!\n${invitelink}`);
+}
+
+async function aqi(message,args){
+    let url = `http://api.waqi.info/feed/${args[0].toLowerCase()}/?token=demo`;
+    try{
+        let json = await fetch(url);
+        let data = await json.json();
+        console.log(data);
+    }
+    catch{
+        message.channel.send('Invalid city :(');
+    }
+}
 client.on('ready', function(){
     console.log(`Logged in as ${client.user.username}`);
     client.user.setActivity(`${prefix}help | ${client.users.cache.size} members`);
@@ -314,6 +329,12 @@ client.on('message', function(message){
         case 'ANNOUNCE':
             announce(message,args);
             break;
+
+        case 'INVITE':
+            invite(message);
+        
+        case 'AQI':
+            aqi(message,args);
     }
     console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
 })
