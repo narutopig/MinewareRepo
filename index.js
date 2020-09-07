@@ -213,7 +213,10 @@ async function covid(message, args){ // sends a discord.MessageEmbed
 }
 
 function bug(message,args){
-    if (args.length == 0) return;
+    if (args.length == 0){
+        message.channel.send('Please provide a message');
+        return;
+    }
     let time = Math.floor(Date.now() / 1000);
     let name = message.member.user.tag;
     if (bugCooldowns[name] == null){
