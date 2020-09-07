@@ -235,7 +235,7 @@ function bug(message,args){
             {name: 'Message:', value: msg, inline: false}
         )
         .setFooter(`Sent by ${name}`,message.author.avatar_url);
-        client.channels.cache.get("752559463474397357").send(bugEmbed);
+    client.channels.cache.get("752559463474397357").send(bugEmbed);
 }
 
 function announce(message,args){
