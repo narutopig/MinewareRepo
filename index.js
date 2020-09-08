@@ -286,13 +286,13 @@ async function aqi(message,args){
         let data = await json.json();
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setTitle('Bug Report')
-            .setAuthor(client.user.name)
+            .setTitle('AQI')
+            .setAuthor(client.user.username)
             .addFields(
                 {name: 'Status', value: data['status'], inline: false},
                 {name: 'AQI', value: data['data']['aqi'], inline: false}
             )
-            .setFooter(`Sent by ${client.user.name}`,client.user.avatar_url);
+            .setFooter(`Data from ${url}`,client.user.avatar_url);
         message.channel.send(embed);
     }
     catch{
