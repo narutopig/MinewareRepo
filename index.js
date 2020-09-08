@@ -298,7 +298,7 @@ client.on('ready', function(){
         `v${pkg.version}`
     ];
     console.log(`Logged in as ${client.user.username}`);
-    client.setInterval(() => {
+    setInterval(() => {
         client.user.setActivity(`${prefix}help | ${activies[index]}`);
         index = (index + 1) % activies.length;
     }, 10000);
