@@ -318,6 +318,12 @@ client.on('ready', function(){
     client.user.setActivity(`${prefix}help | ${client.users.cache.size} members`);
 });
 
+client.on('memberjoin', function(member) {
+
+    let hellochannel = member.guild.channels.find(channel => channel.name === "general");
+    hellochannel.send("Welcome to the server ${member.displayName}, hope you have a great time!")
+})
+
 client.on('message', function(message){
     if (!message.guild) return;
     if (message.author.bot) return;
