@@ -12,6 +12,7 @@ let bugCooldowns = new Map();
 let announceCooldowns = new Map();
 let purgeCooldowns = new Map();
 let invitelink = 'https://discord.com/api/oauth2/authorize?client_id=743529355107500033&permissions=8&scope=bot';
+let activityIndex = 0;
 
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -291,8 +292,16 @@ async function aqi(message,args){
     }
 }
 client.on('ready', function(){
+    const activies = [
+        `${client.users.cache.size} users`,
+        `${client.guilds.cache.size} servers`,
+        `v${pkg.version}`
+    ];
     console.log(`Logged in as ${client.user.username}`);
-    client.user.setActivity(`${prefix}help | ${client.users.cache.size} users`);
+    setInterval(() => {
+        client.user.setActivity(`${prefix}help | ${activies[index]}`);
+        index = (index + 1) % activies.length;
+    }, 10000);
 });
 
 client.on('message', function(message){
