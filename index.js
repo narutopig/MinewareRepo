@@ -12,7 +12,6 @@ let announceCooldowns = new Map();
 let purgeCooldowns = new Map();
 let invitelink = 'https://discord.com/api/oauth2/authorize?client_id=743529355107500033&permissions=8&scope=bot';
 rawdata = fs.readFileSync('./resources/config.json');
-let config = JSON.parse(rawdata);
 
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
