@@ -1,3 +1,4 @@
+let announceCooldowns = new Map();
 module.exports = {
     'name': 'announce',
     'description': 'Make an announcement!',

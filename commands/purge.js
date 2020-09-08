@@ -1,3 +1,4 @@
+let purgeCooldowns = new Map();
 module.exports = {
     'name': 'purge',
     'description': 'Deletes messages',

@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+let bugCooldowns = new Map();
 module.exports = {
     'name': 'bug',
     'description': 'Report a bug',
