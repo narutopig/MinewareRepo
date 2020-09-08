@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const fetch = require('node-fetch');
 const formatNumber = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 module.exports = {
     'name': 'covid',
