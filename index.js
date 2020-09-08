@@ -293,12 +293,12 @@ async function aqi(message,args){
 }
 client.on('ready', function(){
     const activies = [
-        `${client.users.cache.size} users`,
+        `${client.users.cache.size} users`,s
         `${client.guilds.cache.size} servers`,
         `v${pkg.version}`
     ];
     console.log(`Logged in as ${client.user.username}`);
-    setInterval(() => {
+    client.setInterval(() => {
         client.user.setActivity(`${prefix}help | ${activies[index]}`);
         index = (index + 1) % activies.length;
     }, 10000);
