@@ -53,8 +53,8 @@ client.on('message', function(message){
     try{
         client.commands.get(commands.toLowerCase()).execute(message,args,client);
     }
-    catch{
-        console.log('An error occured :(')
+    catch(err){
+        console.log(err);
     }
     finally{
         console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
