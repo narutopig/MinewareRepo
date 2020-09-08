@@ -51,7 +51,7 @@ client.on('message', function(message){
     let command = temp[0].slice(1);
     let args = temp.slice(1);
     try{
-        client.commands.get(commands.toLowerCase()).execute(message,args,client);
+        client.commands.get(command.toLowerCase()).execute(message,args,client);
     }
     catch(err){
         console.log(err);
