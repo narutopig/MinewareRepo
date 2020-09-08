@@ -293,7 +293,7 @@ async function aqi(message,args){
 }
 client.on('ready', function(){
     const activies = [
-        `${client.users.cache.size} users`,s
+        `${client.users.cache.size} users`,
         `${client.guilds.cache.size} servers`,
         `v${pkg.version}`
     ];
