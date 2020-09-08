@@ -2,7 +2,7 @@ const formatNumber = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 module.exports = {
     'name': 'covid',
     'description': 'Gets COVID-19 statistics',
-    execute: await function(message,args,client){
+    execute: async function(message,args,client){
         let url = `https://api.covidtracking.com/v1/us/current.json`;
         let things = []; // things to get in api
         let isState = false;
