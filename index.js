@@ -3,7 +3,6 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const fetch = require('node-fetch');
 let rawdata = fs.readFileSync('./package.json');
-rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
 const client = new Discord.Client();
 const token = process.env.token;
@@ -12,6 +11,9 @@ let bugCooldowns = new Map();
 let announceCooldowns = new Map();
 let purgeCooldowns = new Map();
 let invitelink = 'https://discord.com/api/oauth2/authorize?client_id=743529355107500033&permissions=8&scope=bot';
+rawdata = fs.readFileSync('./resources/config.json');
+let config = JSON.parse(rawdata);
+
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
@@ -283,7 +285,15 @@ async function aqi(message,args){
     try{
         let json = await fetch(url);
         let data = await json.json();
-        console.log(data);
+        let embed = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('Bug Report')
+            .setAuthor(client.user.name)
+            .addFields(
+                {name: 'Status', value: data['status'], inline: false},
+                {name: 'AQI', value: data['data']['aqi'], inline: false}
+            )
+            .setFooter(`Sent by ${client.user.name}`,client.user.avatar_url);
     }
     catch{
         message.channel.send('Invalid city :(');
@@ -300,7 +310,7 @@ client.on('ready', function(){
     setInterval(() => {
         client.user.setActivity(`${prefix}help | ${activies[index]}`);
         index = (index + 1) % activies.length;
-    }, 10000);
+    }, 20000);
 });
 
 client.on('memberjoin', function(member) {
