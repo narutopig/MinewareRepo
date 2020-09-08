@@ -11,7 +11,7 @@ module.exports = {
         let name = message.member.user.tag;
         let flag = args[0];
         let isFlag = false;
-        if (isFlag.startsWith('-')){
+        if (flag.startsWith('-')){
             isFlag = true;
         }
         if (announceCooldowns[name] == null){
@@ -40,7 +40,7 @@ module.exports = {
                     break;
                 default:
                     let rolename = flag.slice(1);
-                    let role = message.guild.roles.cache.find("name",'Muted');
+                    let role = message.guild.roles.cache.find("name",rolename);
                     if (role != undefined){
                         msg = `${role.toString()}\n${msg}`;
                     }
