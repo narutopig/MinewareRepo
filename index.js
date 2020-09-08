@@ -12,6 +12,7 @@ let bugCooldowns = new Map();
 let announceCooldowns = new Map();
 let purgeCooldowns = new Map();
 let invitelink = 'https://discord.com/api/oauth2/authorize?client_id=743529355107500033&permissions=8&scope=bot';
+var activityIndex = 0;
 
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -54,7 +55,7 @@ function help(message,args){
             case 'PURGE':
                 embed.addFields(
                     {name: `Arguments`, value: `Arguments: amt (int)`, inline: false},
-                    {name: `Required Permissions`, value: `None`, inline: false}
+                    {name: `Required Permissions`, value: `None`, inilne: false}
                 )
                 break;
             case 'ANNOUNCE':
@@ -87,17 +88,6 @@ function help(message,args){
                     {name: `Required Permissions`, value: `None`, inline: false}
                 )
                 break;
-            case 'INVITE':
-                embed.addFields(
-                    {name: `invite`, value: `Arguments: None`, inline: false},
-                    {name: `Required Permissions`, value: 'None', inline: false}
-                )
-                break;
-            case 'AQI':
-                embed.addFields(
-                    {name: 'AQI', value: 'Arguments: city', inline: false},
-                    {name: 'Required Permissions', value: 'None', inline: false}
-                )
         }
     }
     message.channel.send(embed);
@@ -224,7 +214,10 @@ async function covid(message, args){ // sends a discord.MessageEmbed
 }
 
 function bug(message,args){
-    if (args.length == 0) return;
+    if (args.length == 0){
+        message.channel.send('Please provide a message');
+        return;
+    }
     let time = Math.floor(Date.now() / 1000);
     let name = message.member.user.tag;
     if (bugCooldowns[name] == null){
@@ -246,7 +239,7 @@ function bug(message,args){
             {name: 'Message:', value: msg, inline: false}
         )
         .setFooter(`Sent by ${name}`,message.author.avatar_url);
-    client.users.cache.get('537498289600200724').send(bugEmbed);
+    client.channels.cache.get("752559463474397357").send(bugEmbed);
 }
 
 function announce(message,args){
@@ -288,34 +281,27 @@ function invite(message){
 }
 
 async function aqi(message,args){
-    if (args == undefined || args.length == 0){
-        message.channel.send('Please provide a city');
-        return;
-    }
     let url = `http://api.waqi.info/feed/${args[0].toLowerCase()}/?token=demo`;
     try{
         let json = await fetch(url);
         let data = await json.json();
-        let info = data['data'];
-        embed = new Discord.MessageEmbed()
-            .setColor('#0099ff')
-            .setTitle('Covid-19 Stats')
-            .setAuthor(`${client.user.username}`)
-            .setTimestamp()
-            .setFooter(`Data from ${url}`, client.user.avatar_url)
-            .addFields(
-                {name: `Status:`, value: `${data['status']}`, inline: false},
-                {name: `AQI:`, value: `${info['aqi']}`, inline: false}
-            );
-        message.channel.send(embed);
+        console.log(data);
     }
     catch{
         message.channel.send('Invalid city :(');
     }
 }
 client.on('ready', function(){
+    const activies = [
+        `${client.users.cache.size} users`,
+        `${client.guilds.cache.size} servers`,
+        `v${pkg.version}`
+    ];
     console.log(`Logged in as ${client.user.username}`);
-    client.user.setActivity(`${prefix}help | ${client.users.cache.size} members`);
+    client.setInterval(() => {
+        client.user.setActivity(`${prefix}help | ${activies[index]}`);
+        index = (index + 1) % activies.length;
+    }, 10000);
 });
 
 client.on('memberjoin', function(member) {
