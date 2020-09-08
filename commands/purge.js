@@ -32,7 +32,6 @@ module.exports = {
                 message.channel.bulkDelete(val);
                 val = Math.min(100,amt);
             }
-            console.log(val,temp);
             message.channel.send('Success!');
         }
         catch(err){
