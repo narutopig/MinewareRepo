@@ -293,6 +293,7 @@ async function aqi(message,args){
                 {name: 'AQI', value: data['data']['aqi'], inline: false}
             )
             .setFooter(`Sent by ${client.user.name}`,client.user.avatar_url);
+        message.channel.send(embed);
     }
     catch{
         message.channel.send('Invalid city :(');
