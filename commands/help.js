@@ -8,10 +8,10 @@ module.exports = {
             .setTitle('Help')
             .setAuthor(`${client.user.username}`)
             .setTimestamp()
-            .setFooter(`Type ${prefix}bug to report any bugs!`, client.user.avatar_url);
+            .setFooter(`Type ${process.env.prefix}bug to report any bugs!`, client.user.avatar_url);
         if (args === undefined || args.length == 0){
             embed.addFields(
-                {name: `How to use the command`, value: `Type ${prefix}help [section] to get the commands in that section. For example, ${prefix}help misc`, inline: false},
+                {name: `How to use the command`, value: `Type ${process.env.prefix}help [section] to get the commands in that section. For example, ${process.env.prefix}help text`, inline: false},
                 {name: `Text`, value: `Text commands (no paramaters)`, inline: false},
                 {name: `Moderation`, value: `Moderation commands (needs special permissions)`, inline: false},
                 {name: `Bugs`, value: `Report bugs`, inline: false}
