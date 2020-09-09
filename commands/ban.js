@@ -13,7 +13,7 @@ module.exports = {
             message.channel.send('That\'s not a valid user!');
             return;
         }
-        if (member.hasPermission('ADMINISTRATOR')){
+        if (member.permissions.has('ADMINISTRATOR')){
             message.channel.send(`You cannot ${this.name} administrators`);
             return;
         }

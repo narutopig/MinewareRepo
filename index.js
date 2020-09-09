@@ -41,7 +41,7 @@ client.on('memberjoin', function(member) {
 client.on('message', function(message){
     if (!message.guild) return;
     if (message.author.bot) return;
-    if (message.member.roles.cache.some(role => role.name == 'Muted')) message.delete();
+    if (message.member.roles.cache.some(role => role.name.toUpperCase() == 'MUTED')) message.delete();
     if (!message.content.startsWith(prefix)) return;
     let string = message.content.replace(/ +/g, ' ');
     let temp = string.split(' ');

@@ -13,7 +13,7 @@ module.exports = {
             message.channel.send('That user is already muted (or has a role named Muted');
             return;
         }
-        if (person.hasPermission('ADMINISTRATOR')){
+        if (person.permissions.has('ADMINISTRATOR')){
             message.channel.send(`You cannot ${this.name} administrators`);
             return;
         }
