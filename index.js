@@ -26,7 +26,7 @@ client.on('ready', function(){
         `v${pkg.version}`
     ];
     console.log(`Logged in as ${client.user.username} on v${pkg.version}`);
-    client.setActivity(`${prefix}help | ${activies[0]}`);
+    client.user.setActivity(`${prefix}help | ${activies[0]}`);
     setInterval(() => {
         client.user.setActivity(`${prefix}help | ${activies[index]}`);
         index = (index + 1) % activies.length;
