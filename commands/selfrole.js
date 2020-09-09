@@ -1,5 +1,5 @@
 const fs = require('fs');
-const srjson = fs.readFileSync('./resources/settings.json');
+const srjson = fs.readFileSync('./resources/selfrole.json');
 let sr = JSON.parse(srjson);
 module.exports = {
     'name': 'rr',
