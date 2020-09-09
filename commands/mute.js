@@ -4,7 +4,7 @@ module.exports = {
     'arguments': 'User (mention)',
     'permissions': 'MANAGE_ROLES',
     execute(message,args,client){
-        if (!message.author.hasPermission('MANAGE_ROLES')){
+        if (!message.member.hasPermission('MANAGE_ROLES')){
             message.channel.send(`You need the ${this.permissions} permission(s) to use this command!`);
             return;
         }
