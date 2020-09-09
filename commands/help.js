@@ -2,7 +2,12 @@ const Discord = require('discord.js');
 module.exports = {
     'name': 'help',
     'description': 'Help command',
+    'arguments': 'section [optional], function [optional]',
+    'permissions': 'None',
     execute(message,args,client){
+        const commands = client.commands;
+        console.log(commands.entries);
+        console.log(commands);
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Help')
@@ -29,50 +34,28 @@ module.exports = {
                     embed.addFields(
                         {name: `hi`, value: `Hello!`, inline: false},
                         {name: `stats`, value: `Provides some bot stats`, inline: false},
-                        {name: `covid`, value: `Gets covid stats for a US state or US`, inline: false}
+                        {name: `covid`, value: `Gets covid stats for a US state or US`, inline: false},
+                        {name: 'server', value: 'Join the Utilibot Support Server!'},
+                        {name: 'invite', value: 'Invite Utilibot to your server!', inline: false}
                     )
                     break;
                 case 'BUGS':
                     embed.addFields(
-                        {name: `bugs`, value: `Report a bug!`, inline: false}
+                        {name: `bug`, value: `Report a bug!`, inline: false}
                     )
                     break;
-                case 'PURGE':
-                    embed.addFields(
-                        {name: `Arguments`, value: `Arguments: amt (int)`, inline: false},
-                        {name: `Required Permissions`, value: `None`, inilne: false}
-                    )
-                    break;
-                case 'ANNOUNCE':
-                    embed.addFields(
-                        {name: `announce`, value: `Arguments: Channel, args (words of the message)`, inline: false},
-                        {name: `Required Permissions`, value: `\`MANAGE_CHANNELS\``, inline: false}
-                    )
-                    break;
-                case 'HI':
-                    embed.addFields(
-                        {name: `hi`, value: `Arguments: None`, inline: false},
-                        {name: `Required Permissions`, value: `None`, inline: false}
-                    )
-                    break;
-                case 'STATS':
-                    embed.addFields(
-                        {name: `stats`, value: `Arguments: None`, inline: false},
-                        {name: `Required Permissions`, value: `None`, inline: false}
-                    )
-                    break;
-                case 'COVID':
-                    embed.addFields(
-                        {name: `covid`, value: `Arguments: statecode (optional)`, inline: false},
-                        {name: `Required Permissions`, value: `None`, inline: false}
-                    )
-                    break;
-                case 'BUG':
-                    embed.addFields(
-                        {name: `bug`, value: `Arguments: args (words)`, inline: false},
-                        {name: `Required Permissions`, value: `None`, inline: false}
-                    )
-                    break;
+                default:
+                    let cmdname = args[0].toLowerCase();
+                    try{
+                        embed.addFields(
+                            {name: `${cmdname}`, value: `${commands[cmdname]['description']}`, inline: false},
+                            {name: `Arguments`, value: `${commands[cmdname]['arguments']}`, inline: false},
+                            {name: 'Permissions', value: `${commands[cmdname]['permissions']}`, inline: false}
+                        );
+                    }
+                    catch{
+                        console.log('There was an error, devs will fix :)');
+                    }
             }
         }
         message.channel.send(embed);

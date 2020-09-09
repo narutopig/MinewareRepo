@@ -42,7 +42,6 @@ client.on('message', function(message){
     if (message.author.bot) return;
     if (message.member.roles.cache.some(role => role.name == 'Muted')) message.delete();
     if (!message.content.startsWith(prefix)) return;
-
     let string = message.content.replace(/ +/g, ' ');
     let temp = string.split(' ');
     let command = temp[0].slice(1);

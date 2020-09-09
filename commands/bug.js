@@ -3,6 +3,8 @@ let bugCooldowns = new Map();
 module.exports = {
     'name': 'bug',
     'description': 'Report a bug',
+    'arguments': 'Words (list)',
+    'permissions': 'None',
     execute(message,args,client){
         if (args.length == 0){
             message.channel.send('Please provide a message');
