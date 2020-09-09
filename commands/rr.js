@@ -21,6 +21,7 @@ module.exports = {
         channel.send(words.join(' '))
             .then(message => {
                 rrdata[message.guild.id.toString()]['messages'].push(message.id.toString());
+                rrdata[message.guild.id.toString()]['roles'].push(role.id.toString());
             });
     }
 }
