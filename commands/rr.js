@@ -10,6 +10,7 @@ module.exports = {
         }
         const channel = message.mentions.channels.first();
         const role = message.mentions.roles.first();
+<<<<<<< Updated upstream
         const words = args.slice(2);
         if (!words){
             message.channel.send('Please provide a message.');
@@ -17,5 +18,7 @@ module.exports = {
         }
         channel.send(words.join(' '))
             .then(message => console.log(message.id));
+=======
+>>>>>>> Stashed changes
     }
 }
