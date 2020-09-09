@@ -29,7 +29,7 @@ module.exports = {
             message.channel.send(`I cannot ${this.name} administrators`);
             return;
         }
-        if (person.roles.cache.some(role => role.name.toUpperCase() == 'MUTED')){
+        if (target.roles.cache.some(role => role.name.toUpperCase() == 'MUTED')){
             message.channel.send('That user is already muted (or has a role named Muted');
             return;
         }
