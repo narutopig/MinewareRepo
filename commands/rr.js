@@ -18,8 +18,8 @@ module.exports = {
             message.channel.send('Please provide a message.');
             return;
         }
-        channel.send(words.join(' '))
-            .then(message => {
+        channel.send(words.jin(' '))
+            .then(message => {o
                 rrdata[message.guild.id.toString()]['messages'].push(message.id.toString());
                 rrdata[message.guild.id.toString()]['roles'].push(role.id.toString());
             });
