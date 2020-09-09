@@ -33,7 +33,7 @@ module.exports = {
             message.channel.send('That user is already muted (or has a role named Muted');
             return;
         }
-        let role = message.guild.roles.find(r => r.name.toUpperCase() == "Muted");
+        let role = message.guild.roles.cache.find(r => r.name.toUpperCase() == "MUTED");
         if (!role){
             message.channel.send('No mute role found, please create a role named \"Muted\"');
             return;
