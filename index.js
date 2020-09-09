@@ -19,13 +19,14 @@ for (const file of commandFiles){
 const formatNumber = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 client.on('ready', function(){
-    let index = 0;
+    let index = 1;
     const activies = [
         `${client.users.cache.size} users`,
         `${client.guilds.cache.size} servers`,
         `v${pkg.version}`
     ];
     console.log(`Logged in as ${client.user.username} on v${pkg.version}`);
+    client.setActivity(`${prefix}help | ${activies[0]}`);
     setInterval(() => {
         client.user.setActivity(`${prefix}help | ${activies[index]}`);
         index = (index + 1) % activies.length;
