@@ -46,11 +46,12 @@ module.exports = {
                     break;
                 default:
                     let cmdname = args[0].toLowerCase();
+                    console.log(client.commands[cmdname]);
                     try{
                         embed.addFields(
-                            {name: `${cmdname}`, value: `${commands[cmdname]['description']}`, inline: false},
-                            {name: `Arguments`, value: `${commands[cmdname]['arguments']}`, inline: false},
-                            {name: 'Permissions', value: `${commands[cmdname]['permissions']}`, inline: false}
+                            {name: `${cmdname}`, value: `${client.commands[cmdname]['description']}`, inline: false},
+                            {name: `Arguments`, value: `${client.commands[cmdname]['arguments']}`, inline: false},
+                            {name: 'Permissions', value: `${client.commands[cmdname]['permissions']}`, inline: false}
                         );
                     }
                     catch{
