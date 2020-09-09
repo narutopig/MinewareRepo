@@ -8,7 +8,6 @@ const token = process.env.token;
 const prefix = process.env.prefix;
 let rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
-rawdata = fs.readFileSync('./resources/config.json');
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
