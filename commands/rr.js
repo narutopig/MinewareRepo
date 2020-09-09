@@ -1,27 +1,14 @@
 const fs = require('fs');
 const rrjson = fs.readFile('./resources/rr.json');
 let rrdata = JSON.parse(rrjson);
+
 client.on('messageDelete', function(message){
-    const in = (value,list,tripleequal) => {
-        if (!tripleequal){
-            tripleequal = false;
-        }
-        for (let i = 0; i < list.length; i++){
-            if (tripleequal){
-                if (list[i] === value) return true;
-            }
-            else{
-                if (list[i] == value) return true;
-            }
-        }
-        return false;
-    }
     const msgid = message.id;
     if (!rrdata[message.guild.id.toString()]){
         rrdata[message.guild.id.toString()] = [];
     }
     const serverinfo = rrdata[message.guild.id.toString()];
-    if (in(msgid.toString(),serverinfo['messages'])) console.log('asdf');
+    if (serverinfo['messages'].includes(msgid)) console.log('asdf');
 });
 module.exports = {
     'name': 'rr',
