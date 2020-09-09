@@ -1,5 +1,5 @@
 const fs = require('fs');
-const rrjson = fs.readFile('./resources/rr.json');
+const rrjson = fs.readFileSync('./resources/rr.json');
 let rrdata = JSON.parse(rrjson);
 module.exports = {
     'name': 'rr',
@@ -18,7 +18,7 @@ module.exports = {
             message.channel.send('Please provide a message.');
             return;
         }
-        channel.send(words.jin(' '))
+        channel.send(words.join(' '))
             .then(message => {o
                 rrdata[message.guild.id.toString()]['messages'].push(message.id.toString());
                 rrdata[message.guild.id.toString()]['roles'].push(role.id.toString());
