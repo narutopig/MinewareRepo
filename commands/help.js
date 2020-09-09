@@ -5,9 +5,6 @@ module.exports = {
     'arguments': 'section [optional], function [optional]',
     'permissions': 'None',
     execute(message,args,client){
-        const commands = client.commands;
-        console.log(commands.entries);
-        console.log(commands);
         let embed = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Help')
@@ -45,17 +42,17 @@ module.exports = {
                     )
                     break;
                 default:
-                    let cmdname = args[0].toLowerCase();
-                    console.log(client.commands[cmdname]);
+                    let cmd = client.commands.get(args[0].toLowerCase());
+                    console.log(cmd);
                     try{
                         embed.addFields(
-                            {name: `${cmdname}`, value: `${client.commands[cmdname]['description']}`, inline: false},
-                            {name: `Arguments`, value: `${client.commands[cmdname]['arguments']}`, inline: false},
-                            {name: 'Permissions', value: `${client.commands[cmdname]['permissions']}`, inline: false}
+                            {name: `${args[0].toLowerCase()}`, value: `${cmd.description}`, inline: false},
+                            {name: `Arguments`, value: `${cmd.arguments}`, inline: false},
+                            {name: 'Permissions', value: `${cmd.permissions}`, inline: false}
                         );
                     }
-                    catch{
-                        console.log('There was an error, devs will fix :)');
+                    catch(err){
+                        console.log(err);
                     }
             }
         }
