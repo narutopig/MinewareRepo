@@ -1,5 +1,5 @@
 const fs = require('fs');
-const rrjson = fs.readFileSync('./resources/rr.json');
+const rrjson = fs.readFileSync('resources/rr.json');
 let rrdata = JSON.parse(rrjson);
 module.exports = {
     'name': 'rr',
