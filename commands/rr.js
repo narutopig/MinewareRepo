@@ -1,4 +1,3 @@
-client.on('')
 module.exports = {
     'name': 'rr',
     'description': 'Change the reaction roles',
