@@ -10,8 +10,8 @@ module.exports = {
     'permissions': 'None',
     execute(message,args,client){
         console.log(sr);
-        if (!sr[message.guild.toString()] || sr[message.guild.toString()]){
-            sr[message.guild.toString()] = [];
+        if (!sr[message.guild.id.toString()] || sr[message.guild.id.toString()] == undefined){
+            sr[message.guild.id.toString()] = [];
         }
         if (args[0].toLowerCase() == 'add'){
             if (!message.member.hasPermission('MANAGE_ROLES')){
