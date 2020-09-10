@@ -9,6 +9,7 @@ module.exports = {
     'arguments': 'Role(s) (not mentions)',
     'permissions': 'None',
     execute(message,args,client){
+        console.log(sr);
         if (!sr[message.guild.toString()] || sr[message.guild.toString()]){
             sr[message.guild.toString()] = [];
         }
