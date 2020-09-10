@@ -20,7 +20,7 @@ module.exports = {
             let embed = new MessageEmbed()
                 .setColor("#00ffff");
             for (const role of args.slice(1)){
-                if (message.member.roles.cache.find(r => r.name === role)){
+                if (message.member.roles.cache.find(r => r.name == role)){
                     sr[message.guild.id.toString()].push()
                     embed.addFields({name: role, value: 'Success', inline: true});
                 }
