@@ -37,6 +37,7 @@ module.exports = {
         let embed = new MessageEmbed()
             .setColor("#00ffff");
         for (const role of roles){
+            console.log(sr[message.guild.id.toString()]);
             const sr = message.guild.roles.cache.find(r => r.name === role);
             if (sr == undefined){
                 embed.addFields({name: role, value: 'Failed', inline: true});
