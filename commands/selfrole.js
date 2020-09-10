@@ -9,6 +9,7 @@ module.exports = {
     'arguments': 'Role(s) (not mentions)',
     'permissions': 'None',
     execute(message,args,client){
+        sr = JSON.parse(srjson);
         console.log(sr);
         if (!sr[message.guild.id.toString()] || sr[message.guild.id.toString()] == undefined){
             sr[message.guild.id.toString()] = [];
