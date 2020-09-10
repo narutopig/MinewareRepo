@@ -1,8 +1,6 @@
 require('dotenv').config();
 const Discord = require('discord.js');
 const fs = require('fs');
-const fetch = require('node-fetch');
-const { basename } = require('path');
 const client = new Discord.Client();
 const token = process.env.token;
 const prefix = process.env.prefix;

@@ -1,5 +1,6 @@
+const path = require('path');
 const fs = require('fs');
-const srjson = fs.readFileSync('./resources/selfrole.json');
+const srjson = fs.readFileSync(path.join(__dirname,'./resources/selfrole.json'));
 let sr = JSON.parse(srjson);
 module.exports = {
     'name': 'rr',
