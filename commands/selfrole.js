@@ -9,11 +9,10 @@ module.exports = {
     'arguments': 'Role(s) (not mentions)',
     'permissions': 'None',
     execute(message,args,client){
-        const cmd = args[0].toLowercase();
         if (!sr[message.guild.toString()] || sr[message.guild.toString()]){
             sr[message.guild.toString()] = [];
         }
-        if (cmd == 'add'){
+        if (args[0].toLowerCase() == 'add'){
             if (!message.member.hasPermission('MANAGE_ROLES')){
                 message.channel.send(`You need the ${this.permissions} permission(s) to use this command!`);
                 return;
