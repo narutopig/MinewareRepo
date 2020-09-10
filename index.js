@@ -43,7 +43,7 @@ client.on('message', function(message){
     if (!message.content.startsWith(prefix)) return;
     let string = message.content.replace(/ +/g, ' ');
     let temp = string.split(' ');
-    let command = temp[0].slice(1);
+    let command = temp[0].slice(prefix.length);
     let args = temp.slice(1);
     try{
         client.commands.get(command.toLowerCase()).execute(message,args,client);
