@@ -1,24 +1,56 @@
 const path = require('path');
+const { MessageEmbed, Guild } = require('discord.js');
 const fs = require('fs');
 const srjson = fs.readFileSync(path.join(__dirname,'./resources/selfrole.json'));
 let sr = JSON.parse(srjson);
 module.exports = {
-    'name': 'rr',
-    'description': 'Change the reaction roles',
-    'arguments': 'Channel, role, message (list of words)',
-    'permissions': 'MANAGE_ROLES',
+    'name': 'selfrole',
+    'description': 'Give yourself a role!',
+    'arguments': 'Role(s) (not mentions)',
+    'permissions': 'None',
     execute(message,args,client){
-        if (!message.member.hasPermission('MANAGE_ROLES')){
-            message.channel.send(`You need the ${this.permissions} permission(s) to use this command!`);
+        const cmd = args[0].toLowercase();
+        if (!sr[message.guild.toString()] || sr[message.guild.toString()]){
+            sr[message.guild.toString()] = [];
+        }
+        if (cmd == 'add'){
+            if (!message.member.hasPermission('MANAGE_ROLES')){
+                message.channel.send(`You need the ${this.permissions} permission(s) to use this command!`);
+                return;
+            }
+            let embed = new MessageEmbed()
+                .setColor("#00ffff");
+            for (const role of args.slice(1)){
+                if (message.member.roles.cache.find(r => r.name === role)){
+                    sr[message.guild.id.toString()].push()
+                    embed.addFields({name: role, value: 'Success', inline: true});
+                }
+                else{
+                    embed.addFields({name: role, value: 'Failed', inline: true});
+                }
+            }
+            fs.writeFile(path.join(__dirname,'./resources/selfrole.json'),sr);
+            message.channel.send(embed)
             return;
         }
-        const channel = message.mentions.channels.first();
-        const role = message.mentions.roles.first();
-        const words = args.slice(2);
-        if (!words){
-            message.channel.send('Please provide a message.');
-            return;
+        const roles = args;
+        let embed = new MessageEmbed()
+            .setColor("#00ffff");
+        for (const role of roles){
+            const sr = message.member.roles.cache.find(r => r.name === role);
+            if (sr == undefined){
+                embed.addFields({name: role, value: 'Failed', inline: true});
+            }
+            else{
+                if (sr[message.guild.id.toString()].includes(role)){
+                    message.member.roles.add(sr);
+                    embed.addFields({name: role, value: 'Success', inline: true});
+                }
+                else{
+                    embed.addFields({name: role, value: 'Failed', inline: true});
+                }
+            }
         }
-        console.log(sr);
+        message.channel.send(embed);
     }
 }
