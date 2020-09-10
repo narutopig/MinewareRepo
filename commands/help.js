@@ -1,4 +1,4 @@
-requiret('dotenv').config();
+require('dotenv').config();
 const Discord = require('discord.js');
 module.exports = {
     'name': 'help',
