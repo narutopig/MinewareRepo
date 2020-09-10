@@ -28,7 +28,7 @@ module.exports = {
                     embed.addFields({name: role, value: 'Failed', inline: true});
                 }
             }
-            fs.writeFile(path.join(__dirname,'./resources/selfrole.json'),sr);
+            fs.writeFile((`${__dirname}./resources/selfrole.json`,sr);
             message.channel.send(embed)
             return;
         }
