@@ -1,4 +1,3 @@
-let announceCooldowns = new Map();
 module.exports = {
     'name': 'announce',
     'description': 'Make an announcement!',
@@ -9,22 +8,10 @@ module.exports = {
             message.channel.send(`You need the \`MANAGE_CHANNELS\` permission to use this command`);
             return;
         }
-        let time = Math.floor(Date.now() / 1000);
-        let name = message.member.user.tag;
         let flag = args[0];
         let isFlag = false;
         if (flag.startsWith('-')){
             isFlag = true;
-        }
-        if (announceCooldowns[name] == null){
-            announceCooldowns[name] = time;
-        }
-        else{
-            if (time - announceCooldowns[name] <= 60){
-                message.channel.send(`You need to wait \`${60 - (time - announceCooldowns[name])}s\` before using this command again`);
-                return;
-            }
-            announceCooldowns[name] = time;
         }
         if (args.length < 2){
             message.channel.send('Please provide a message to send.');

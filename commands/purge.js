@@ -1,4 +1,3 @@
-let purgeCooldowns = new Map();
 module.exports = {
     'name': 'purge',
     'description': 'Deletes messages',
@@ -10,18 +9,6 @@ module.exports = {
             return;
         }
         if (!args[0]) return;
-        let time = Math.floor(Date.now() / 1000);
-        let name = message.member.user.tag;
-        if (purgeCooldowns[name] == null){
-            purgeCooldowns[name] = time;
-        }
-        else{
-            if (time - purgeCooldowns[name] <= 60){
-                message.channel.send(`You need to wait \`${60 - (time - purgeCooldowns[name])}s\` before using this command again`);
-                return;
-            }
-            purgeCooldowns[name] = time;
-        }
         try{
             let amt = parseInt(args[0]);
             if (amt < 1){
