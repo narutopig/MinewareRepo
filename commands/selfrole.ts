@@ -9,51 +9,18 @@ module.exports = {
     'description': 'Give yourself a role!',
     'arguments': 'Role(s) (not mentions)',
     'permissions': 'None',
-    execute(message,args,client){
-        sr = JSON.parse(srjson);
-        console.log(sr);
-        if (!sr[message.guild.id.toString()] || sr[message.guild.id.toString()] == undefined){
-            sr[message.guild.id.toString()] = [];
+    execute(message,args:string[],client){
+        console.log(roleList);
+        switch (args[0].toLowerCase()){
+            case 'add':
+                roleList.push(args[1]);
+                message.channel.send('sadfjslfdjlkfflkjdlfkflkd');
+                break;
+            case 'self':
+                const role = message.guild.roles.cache.find(r => r.name == args[1]);
+                message.member.roles.add(role);
+                message.channel.send('sdlkfjsklfkjd');
+                break;
         }
-        if (args[0].toLowerCase() == 'add'){
-            if (!message.member.hasPermission('MANAGE_ROLES')){
-                message.channel.send(`You need the ${this.permissions} permission(s) to use this command!`);
-                return;
-            }
-            let embed = new MessageEmbed()
-                .setColor("#00ffff");
-            for (const role of args.slice(1)){
-                if (message.guild.roles.cache.find(r => r.name == role)){
-                    sr[message.guild.id.toString()].push()
-                    embed.addFields({name: role, value: 'Success', inline: true});
-                }
-                else{
-                    embed.addFields({name: role, value: 'Failed', inline: true});
-                }
-            }
-            fs.writeFileSync(`${__dirname}/resources/selfrole.json`,sr);
-            message.channel.send(embed)
-            return;
-        }
-        const roles = args;
-        let embed = new MessageEmbed()
-            .setColor("#00ffff");
-        for (const role of roles){
-            console.log(sr[message.guild.id.toString()]);
-            const sr = message.guild.roles.cache.find(r => r.name === role);
-            if (sr == undefined){
-                embed.addFields({name: role, value: 'Failed', inline: true});
-            }
-            else{
-                if (sr[roleList.toString()].includes(role)){
-                    message.member.roles.add(sr);
-                    embed.addFields({name: role, value: 'Success', inline: true});
-                }
-                else{
-                    embed.addFields({name: role, value: 'Failed', inline: true});
-                }
-            }
-        }
-        message.channel.send(embed);
     }
 }
