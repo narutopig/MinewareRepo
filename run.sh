@@ -1,0 +1,2 @@
+ls
+node index.ts

@@ -2,10 +2,10 @@
   "name": "utilitiesbot",
   "version": "1.5.8",
   "description": "Epic bot",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.ts"
+    "start": "bash run.sh"
   },
   "author": "",
   "license": "ISC",
