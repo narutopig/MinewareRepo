@@ -1,1 +1,1 @@
-tsc index.ts
+npx ts-node index.ts
