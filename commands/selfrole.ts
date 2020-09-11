@@ -10,7 +10,7 @@ module.exports = {
     'arguments': 'Role(s) (not mentions)',
     'permissions': 'None',
     execute(message,args,client){
-        if (!message.author.id == 537498289600200724) return;
+        if (!(message.author.id == 537498289600200724)) return;
         console.log(roleList);
         switch (args[0].toLowerCase()){
             case 'add':
