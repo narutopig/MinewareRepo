@@ -13,6 +13,10 @@ module.exports = {
         console.log(roleList);
         switch (args[0].toLowerCase()){
             case 'add':
+                if (!message.member.hasPermission("ADMINISTRATOR")){
+                    message.channel.send("You don\'t that the necessary permissions");
+                    return;
+                }
                 roleList.push(args[1]);
                 message.channel.send('sadfjslfdjlkfflkjdlfkflkd');
                 break;
