@@ -5,7 +5,7 @@ module.exports = {
     'description': 'Report a bug',
     'arguments': 'Words (list)',
     'permissions': 'None',
-    execute(message,args,client){
+    async execute(message,args,client){
         if (args.length == 0){
             message.channel.send('Please provide a message');
             return;

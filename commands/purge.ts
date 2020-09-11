@@ -3,7 +3,7 @@ module.exports = {
     'description': 'Deletes messages',
     'arguments': 'amt [int]',
     'permissions': 'MANAGE_MESSAGES',
-    execute(message,args,client){
+    async execute(message,args,client){
         if (!message.member.hasPermission('MANAGE_MESSAGES')){
             message.channel.send(`You need the \`MANAGE_MESSAGE\` permission to use this command`);
             return;

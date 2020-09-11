@@ -4,7 +4,7 @@ module.exports = {
     'description': 'Ban someone',
     'arguments': 'User (mention)',
     'permissions': 'BAN_MEMBERS',
-    execute(message,args,client){
+    async execute(message,args,client){
         let target = message.mentions.members.first();
         if (!message.member.hasPermission('BAN_MEMBERS')){
             message.channel.send(`You need the ${this.permissions} permission(s) to use this command.`);

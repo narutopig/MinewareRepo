@@ -8,7 +8,7 @@ module.exports = {
     'description': 'Give yourself a role!',
     'arguments': 'Role(s) (not mentions)',
     'permissions': 'None',
-    execute(message,args,client){
+    async execute(message,args,client){
         console.log(roleList);
         switch (args[0].toLowerCase()){
             case 'add':
@@ -22,7 +22,12 @@ module.exports = {
             case 'self':
                 if (roleList.includes(args[0])){
                     const role = message.guild.roles.cache.find(r => r.name == args[1]);
-                    message.member.roles.add(role);
+                    try{
+                        message.member.roles.add(role);
+                    }
+                    catch{
+                        message.channel.send('I can\'t give that role :(')
+                    }
                     message.channel.send('sdlkfjsklfkjd');
                 }
                 else{

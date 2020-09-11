@@ -4,7 +4,7 @@ module.exports = {
     'description': 'Kick someone',
     'arguments': 'User (mention)',
     'permissions': 'KICK_MEMBERS',
-    execute(message,args,client){
+    async execute(message,args,client){
         let target = message.mentions.members.first();
         if (!message.member.hasPermission('KICK_MEMBERS')){
             message.channel.send(`You need the ${this.permissions} permission(s) to use this command.`);

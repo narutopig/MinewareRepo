@@ -6,7 +6,7 @@ module.exports = {
     'description': 'Gets COVID-19 statistics',
     'arguments': 'state [optional] queries [optional]',
     'permissions': 'None',
-    execute: async function(message,args,client){
+    async execute(message,args,client){
         let url = `https://api.covidtracking.com/v1/us/current.json`;
         let things = []; // things to get in api
         let isState = false;

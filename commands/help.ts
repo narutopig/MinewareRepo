@@ -5,7 +5,7 @@ module.exports = {
     'description': 'Help command',
     'arguments': 'section [optional], function [optional]',
     'permissions': 'None',
-    execute(message,args,client){
+    async execute(message,args,client){
         let embed = new MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Help')

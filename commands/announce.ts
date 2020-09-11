@@ -3,7 +3,7 @@ module.exports = {
     'description': 'Make an announcement!',
     'arguments': 'Words',
     'permissions': 'MANAGE_CHANNELS',
-    execute(message,args,client){
+    async execute(message,args,client){
         if (!message.member.hasPermission('MANAGE_CHANNELS')){
             message.channel.send(`You need the \`MANAGE_CHANNELS\` permission to use this command`);
             return;

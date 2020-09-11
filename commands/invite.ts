@@ -4,7 +4,7 @@ module.exports = {
     'description': 'Invite the bot',
     'arguments': 'None',
     'permissions': 'None',
-    execute(message,args,client){
+    async execute(message,args,client){
         message.channel.send(`Use this link to invite me to your server!\n${invitelink}`);
     }
 }

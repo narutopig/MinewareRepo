@@ -4,7 +4,7 @@ module.exports = {
     'description': 'Mute someone',
     'arguments': 'User (mention)',
     'permissions': 'MANAGE_ROLES',
-    execute(message,args,client){
+    async execute(message,args,client){
         if (!message.member.hasPermission('MANAGE_ROLES')){
             message.channel.send(`You need the ${this.permissions} permission(s) to use this command!`);
             return;
