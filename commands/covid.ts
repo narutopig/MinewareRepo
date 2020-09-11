@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+import { MessageEmbed } from "discord.js";
 const fetch = require('node-fetch');
 const formatNumber = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
             if (url.startsWith('https://api.covidtracking.com/v1/us/')){
                 data = data[0];
             }
-            let embed = new Discord.MessageEmbed()
+            let embed = new MessageEmbed()
                 .setColor('#0099ff')
                 .setTitle('Covid-19 Stats')
                 .setAuthor(`${client.user.username}`)

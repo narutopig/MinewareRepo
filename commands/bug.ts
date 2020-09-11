@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+import { MessageEmbed } from "discord.js";
 let bugCooldowns = new Map();
 module.exports = {
     'name': 'bug',
@@ -23,7 +23,7 @@ module.exports = {
             bugCooldowns[name] = time;
         }
         let msg = args.join(' ');
-        let bugEmbed = new Discord.MessageEmbed()
+        let bugEmbed = new MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Bug Report')
             .setAuthor(name)

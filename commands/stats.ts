@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+import { MessageEmbed } from "discord.js";
 module.exports = {
     'name': 'stats',
     'description': 'Gets bot stats',
@@ -14,7 +14,7 @@ module.exports = {
         }
         let ping = client.ws.ping.toString() + ' ms';
         let memberCount = message.guild.memberCount;
-        const embed = new Discord.MessageEmbed()
+        const embed = new MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Stats')
             .setAuthor(`${client.user.username}`)

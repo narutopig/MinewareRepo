@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+import { MessageEmbed } from "discord.js";
 module.exports = {
     'name': 'mute',
     'description': 'Mute someone',
@@ -44,7 +44,7 @@ module.exports = {
             reason = args[1];
         }
         target.roles.add(role);
-        const embed = new Discord.MessageEmbed()
+        const embed = new MessageEmbed()
             .setTitle(`${this.name}`)
             .setDescription(`Muted ${target} (${target.displayName})`)
             .setColor("#ff0000")

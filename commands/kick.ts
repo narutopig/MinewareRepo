@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js');
+import { MessageEmbed } from "discord.js";
 module.exports = {
     'name': 'kick',
     'description': 'Kick someone',
@@ -30,7 +30,7 @@ module.exports = {
         if (args[1]){
             reason = args[1];
         }
-        const embed = new Discord.MessageEmbed()
+        const embed = new MessageEmbed()
             .setTitle(`${this.name}`)
             .setDescription(`Kicked ${target} (${target.displayName})`)
             .setColor("#ff0000")

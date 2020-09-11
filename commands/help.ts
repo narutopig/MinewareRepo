@@ -1,12 +1,12 @@
 require('dotenv').config();
-const {MessageEmbed} = require('discord.js');
+import { MessageEmbed } from "discord.js";
 module.exports = {
     'name': 'help',
     'description': 'Help command',
     'arguments': 'section [optional], function [optional]',
     'permissions': 'None',
     execute(message,args,client){
-        let embed = new Discord.MessageEmbed()
+        let embed = new MessageEmbed()
             .setColor('#0099ff')
             .setTitle('Help')
             .setAuthor(`${client.user.username}`)

@@ -1,12 +1,12 @@
 require('dotenv').config();
-const Discord = require('discord.js');
+import { Client, Collection } from "discord.js";
 const fs = require('fs');
-const client = new Discord.Client();
+const client = new Client();
 const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
 let rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
-client.commands = new Discord.Collection();
+client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.ts'));
 
 for (const file of commandFiles) {
