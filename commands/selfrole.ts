@@ -1,6 +1,6 @@
 const path = require('path');
-const { MessageEmbed } = require('discord.js';)
-const fs = require('fs');
+const { MessageEmbed } = require('discord.js');
+import fs from "fs";
 const srjson = fs.readFileSync(path.join(__dirname,'./resources/selfrole.json'));
 let sr = JSON.parse(srjson);
 let roleList = [];
