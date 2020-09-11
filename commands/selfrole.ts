@@ -9,7 +9,7 @@ module.exports = {
     'description': 'Give yourself a role!',
     'arguments': 'Role(s) (not mentions)',
     'permissions': 'None',
-    execute(message,args:string[],client){
+    execute(message,args,client){
         console.log(roleList);
         switch (args[0].toLowerCase()){
             case 'add':
