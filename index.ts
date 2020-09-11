@@ -13,9 +13,9 @@ for (const file of commandFiles){
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
-const formatNumber = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const formatNumber = (x:number) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-client.on('ready', function(){
+client.on('ready', async () => {
     let index = 1;
     const activies = [
         `${client.users.cache.size} users`,
@@ -30,12 +30,12 @@ client.on('ready', function(){
     }, 20000);
 });
 
-client.on('memberjoin', function(member) {
+client.on('memberjoin', async (member) => {
     let hellochannel = member.guild.channels.find(channel => channel.name === "general");
     hellochannel.send(`Welcome to the server ${member.displayName}, hope you have a great time!`)
 })
 
-client.on('message', function(message){
+client.on('message', async (message) => {
     if (!message.guild) return;
     if (message.author.bot) return;
     if (message.member.roles.cache.some(role => role.name.toUpperCase() == 'MUTED')) message.delete();
