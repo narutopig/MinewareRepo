@@ -5,7 +5,6 @@ const client = new Discord.Client();
 const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
 let rawdata = fs.readFileSync('./package.json');
-const server = require('./server');
 let pkg = JSON.parse(rawdata);
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -55,6 +54,4 @@ client.on('message', function(message){
         console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
     }
 })
-
-server.keepAlive();
 client.login(token);
