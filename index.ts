@@ -4,6 +4,9 @@ const fs = require('fs');
 const client = new Discord.Client();
 const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
+// const dblToken = process.env.DBLTOKEN;
+// const DBL = require("dblapi.js");
+// const dbl = new DBL(dblToken, { webhookPort: 5000, webhookAuth: 'password' });
 let rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
 client.commands = new Discord.Collection();
@@ -14,6 +17,12 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 const formatNumber = (x: number) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+/*
+dbl.webhook.on('vote', vote => {
+    console.log(`User with ID ${vote.user} just voted!`);
+});
+*/
 
 client.on('ready', async () => {
     let index = 1;
