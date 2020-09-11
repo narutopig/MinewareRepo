@@ -22,7 +22,7 @@ module.exports = {
         output += advice1[random(advice1.length)] + ' ';
         output += advice2[random(advice2.length)] + ' ';
         output += advice3[random(advice3.length)] + '.';
-        message.reply(output);
+        message.channel.send(output);
     }
 }
 
