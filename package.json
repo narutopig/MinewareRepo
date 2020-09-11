@@ -1,6 +1,6 @@
 {
   "name": "utilitiesbot",
-  "version": "1.6",
+  "version": "1.6.0",
   "description": "Epic bot",
   "main": "index.ts",
   "scripts": {
