@@ -44,7 +44,7 @@ module.exports = {
                 case 'OTHER':
                     embed.addFields(
                         {name: 'giveaway', value: 'Still in development :smile:', inline: false},
-                        {name: 'selfrole', value: 'Give your self a role', inline: false}
+                        {name: 'selfrole', value: 'Give yourself a role', inline: false}
                     )
                 default:
                     let cmd = client.commands.get(args[0].toLowerCase());
