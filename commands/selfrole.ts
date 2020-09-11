@@ -20,9 +20,14 @@ module.exports = {
                 message.channel.send('sadfjslfdjlkfflkjdlfkflkd');
                 break;
             case 'self':
-                const role = message.guild.roles.cache.find(r => r.name == args[1]);
-                message.member.roles.add(role);
-                message.channel.send('sdlkfjsklfkjd');
+                if (roleList.includes(args[0])){
+                    const role = message.guild.roles.cache.find(r => r.name == args[1]);
+                    message.member.roles.add(role);
+                    message.channel.send('sdlkfjsklfkjd');
+                }
+                else{
+                    message.channel.send('You can\'t give yourself that role!');
+                }
                 break;
         }
     }
