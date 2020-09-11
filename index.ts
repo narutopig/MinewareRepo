@@ -9,11 +9,11 @@ let pkg = JSON.parse(rawdata);
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.ts'));
 
-for (const file of commandFiles){
+for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
-const formatNumber = (x:number) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const formatNumber = (x: number) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 client.on('ready', async () => {
     let index = 1;
@@ -44,13 +44,11 @@ client.on('message', async (message) => {
     let temp = string.split(' ');
     let command = temp[0].slice(prefix.length);
     let args = temp.slice(1);
-    try{
-        client.commands.get(command.toLowerCase()).execute(message,args,client);
-    }
-    catch(err){
+    try {
+        client.commands.get(command.toLowerCase()).execute(message, args, client);
+    } catch (err) {
         console.log(err);
-    }
-    finally{
+    } finally {
         console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
     }
 })
