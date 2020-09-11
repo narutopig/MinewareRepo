@@ -1,8 +1,9 @@
-const path = require('path');
-const { MessageEmbed } = require('discord.js');
-const fs = require('fs');
+import path from "path";
+import MessageEmbed from "discord.js";
+import fs from "fs";
 const srjson = fs.readFileSync(path.join(__dirname,'./resources/selfrole.json'));
 let sr = JSON.parse(srjson);
+let roleList = [];
 module.exports = {
     'name': 'selfrole',
     'description': 'Give yourself a role!',
@@ -44,7 +45,7 @@ module.exports = {
                 embed.addFields({name: role, value: 'Failed', inline: true});
             }
             else{
-                if (sr[message.guild.id.toString()].includes(role)){
+                if (sr[roleList.toString()].includes(role)){
                     message.member.roles.add(sr);
                     embed.addFields({name: role, value: 'Success', inline: true});
                 }
