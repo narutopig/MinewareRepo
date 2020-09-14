@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client();
 const token = process.env.TOKEN;
-const prefix = process.env.PREFIX;
+const prefix = '$';
 // const dblToken = process.env.DBLTOKEN;
 // const DBL = require("dblapi.js");
 // const dbl = new DBL(dblToken, { webhookPort: 5000, webhookAuth: 'https://utilibotjs.herokuapp.com/' });
@@ -61,4 +61,4 @@ client.on('message', async (message) => {
         console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
     }
 })
-client.login(token);
+client.login("NzQzNTI5MzU1MTA3NTAwMDMz.XzV_rA.7yLb2eCChlexJUYIToiuYFC4p20");
