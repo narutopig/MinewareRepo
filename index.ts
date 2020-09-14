@@ -58,7 +58,7 @@ client.on('message', async (message) => {
     } catch(err) {
         console.log(err);
     } finally {
-        console.log(`[${message.guild}] ${message.author.username}: ${message.content}`);
+        console.log(`[${message.guild.name}] ${message.author.username}: ${message.content}`);
     }
 });
 client.login(token);
