@@ -55,7 +55,10 @@ client.on('message', async (message) => {
     let args = temp.slice(1);
     try {
         client.commands.get(command.toLowerCase()).execute(message, args, client);
+    } catch(err) {
+        console.log(err);
+    } finally {
         console.log(`[${message.guild}] ${message.author.username}: ${message.content}`);
     }
-})
+});
 client.login(token);
