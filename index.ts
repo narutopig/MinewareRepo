@@ -61,4 +61,4 @@ client.on('message', async (message) => {
         console.log(`Author: ${message.author.toString()} Command: ${command} Args: ${args}`);
     }
 })
-client.login("NzQzNTI5MzU1MTA3NTAwMDMz.XzV_rA.7yLb2eCChlexJUYIToiuYFC4p20");
+client.login(token);
