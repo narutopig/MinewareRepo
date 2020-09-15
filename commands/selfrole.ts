@@ -20,9 +20,15 @@ module.exports = {
                 if (role == undefined){
                     role = message.guild.roles.cache.find(r => r.name == args[1]);
                 }
-                console.log(roleList);
-                roleList[message.guild.id.toString()].push(role.id);
-                break;
+                if (role == undefined) return message.channel.send('I couldn\'t find that role!');
+                if (!roleList[message.guild.id.toString()].includes(role.id)){
+                    roleList[message.guild.id.toString()].push(role.id);
+                    writeFileSync(path.join(__dirname,"resources/selfrole.json"),JSON.stringify(roleList));
+                }
+                else{
+                    return message.channel.send('That role is already a self role!');
+                }
+                return;
             case 'self':
                 role = message.guild.roles.cache.find(r => r.name == args[1]);
                 if (role == undefined) return message.channel.send('That\'s not a role in this server!');
@@ -35,7 +41,7 @@ module.exports = {
                         return message.channel.send('I can\'t give you that role!');
                     }
                 }
-                break;
+                return;
         }
     }
 }
