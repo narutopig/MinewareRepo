@@ -32,7 +32,7 @@ module.exports = {
             case 'self':
                 role = message.guild.roles.cache.find(r => r.name == args[1]);
                 if (role == undefined) return message.channel.send('That\'s not a role in this server!');
-                if (roleList[message.guild.id.toString()].includes(role.id)) return message.channel.send('That\'s not a role you can give yourself!');
+                if (roleList[message.guild.id.toString()].includes(role.id.toString())) return message.channel.send('That\'s not a role you can give yourself!');
                 if (role != undefined){
                     try{
                         message.member.roles.add(role);
