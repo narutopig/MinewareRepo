@@ -5,6 +5,11 @@ module.exports = {
     'permissions': 'Own the bot',
     execute(message,args,client){
         if (!(message.author.id == '537498289600200724')) return;
-        return eval(args.join(' '));
+        try{
+            return eval(args.join(' '));
+        }
+        catch (err){
+            message.channel.send(err);
+        }
     }
 }
