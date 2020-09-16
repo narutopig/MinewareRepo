@@ -6,7 +6,7 @@ module.exports = {
     execute(message,args,client){
         if (!(message.author.id == '537498289600200724')) return;
         try{
-            return eval(args.join(' '));
+            eval(args.join(' '));
         }
         catch (err){
             message.channel.send(err);
