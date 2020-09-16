@@ -4,40 +4,24 @@ module.exports = {
     'description': 'Kick someone',
     'arguments': 'User (mention)',
     'permissions': 'KICK_MEMBERS',
-    async execute(message,args,client){
+    async execute(message,args,client) {
         let target = message.mentions.members.first();
-        if (!message.member.hasPermission('KICK_MEMBERS')){
-            message.channel.send(`You need the ${this.permissions} permission(s) to use this command.`);
-            return;
-        }
-        if (!target){
-            message.channel.send(`Please mention someone to ${this.name}`);
-            return;
-        }
-        if (target.user.id == message.author.id){
-            message.channel.send(`You can\'t ${this.name} yourself.`);
-            return;
-        }
-        if (!target.manageable){
-            message.channel.send(`I cannot ${this.name} that person`);
-            return;
-        }
-        if (target.hasPermission('ADMINISTRATOR')){
-            message.channel.send(`I cannot ${this.name} administrators`);
-            return;
-        }
+        if (!message.member.hasPermission('KICK_MEMBERS')) return message.channel.send(`You need the ${this.permissions} permission(s) to use this command.`);
+        if (!target) return message.channel.send(`Mention someone to ${this.name}`);
+        if (target.user.id == message.author.id) return message.channel.send(`You can\'t ${this.name} yourself.`);
+        if (!target.manageable) return message.channel.send(`I cannot ${this.name} that person`);
+        if (target.hasPermission('ADMINISTRATOR')) return message.channel.send(`I cannot ${this.name} administrators`);
         let reason = 'None';
-        if (args[1]){
-            reason = args[1];
-        }
+        if (args[1]) reason = args[1];
         const embed = new MessageEmbed()
             .setTitle(`${this.name}`)
-            .setDescription(`Kicked ${target} (${target.displayName})`)
+            .setDescription(`Kicked ${target.user.username} (${target.displayName})`)
             .setColor("#ff0000")
             .addFields(
                 {name: 'Reason', value: reason, inline: false}
             )
-            .setFooter(`Banned by ${message.author.username}`);
+            .setFooter(`Kicked by ${message.author.username}`);
         target.kick(reason = reason);
+        return message.channel.send(embed);
     }
 }

@@ -3,12 +3,11 @@ module.exports = {
     'description': 'Runs JS/TS code (only for owner :D)',
     'arguments': 'expression(s) (js stuff)',
     'permissions': 'Own the bot',
-    execute(message,args,client){
+    execute(message,args,client) {
         if (!(message.author.id == '537498289600200724')) return;
-        try{
+        try {
             eval(args.join(' '));
-        }
-        catch (err){
+        } catch (err) {
             message.channel.send(err);
         }
     }
