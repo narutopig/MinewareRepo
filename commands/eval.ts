@@ -1,6 +1,6 @@
 module.exports = {
     'name': 'eval',
-    'description:' 'Runs JS/TS code (only for owner :D)',
+    'description': 'Runs JS/TS code (only for owner :D)',
     'arguments': 'expression(s) (js stuff)',
     'permissions': 'Own the bot',
     execute(message,args,client){
