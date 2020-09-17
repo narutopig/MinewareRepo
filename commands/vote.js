@@ -1,11 +1,11 @@
-import { MessageEmbed } from 'discord.js';
+const { MessageEmbed } = require('discord.js');
 module.exports = {
     'name': 'vote',
     'description': 'top.gg links',
     'arguments': 'server | bot (optional)',
     'permissions': 'None',
-    execute(message,args: string[],client){
-        let mode: string;
+    execute(message,args,client){
+        let mode;
         if (args[0]) mode = args[0].toLowerCase();
         switch (mode){
             case 'bot':

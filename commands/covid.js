@@ -1,5 +1,5 @@
-import { MessageEmbed } from "discord.js";
-import fetch from "node-fetch";
+const { MessageEmbed } = require('discord.js');
+const fetch = require('node-fetch');
 const formatNumber = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 module.exports = {
     'name': 'covid',
