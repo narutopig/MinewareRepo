@@ -1,4 +1,4 @@
-import { MessageEmbed } from "discord.js";
+const { MessageEmbed } = require('discord.js');
 let bugCooldowns = new Map();
 module.exports = {
     'name': 'bug',

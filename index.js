@@ -10,13 +10,13 @@ const prefix = '$';
 let rawdata = fs.readFileSync('./package.json');
 let pkg = JSON.parse(rawdata);
 client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.ts'));
+const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
-const formatNumber = (x: number) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const formatNumber = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 /*
 dbl.webhook.on('vote', vote => {
@@ -38,11 +38,6 @@ client.on('ready', async () => {
         index = (index + 1) % activies.length;
     }, 20000);
 });
-
-client.on('memberjoin', async (member) => {
-    let hellochannel = member.guild.channels.find(channel => channel.name === "general");
-    hellochannel.send(`Welcome to the server ${member.displayName}, hope you have a great time!`)
-})
 
 client.on('message', async (message) => {
     if (!message.guild) return;

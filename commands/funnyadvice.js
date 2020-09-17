@@ -1,6 +1,6 @@
 const path = require('path');
-import { readFileSync } from "fs";
-const random = (max:number) => Math.floor(Math.random() * Math.floor(max));
+const { readFileSync } = require('fs');
+const random = (max) => Math.floor(Math.random() * Math.floor(max));
 
 let advice1 = [];
 let advice2 = [];
