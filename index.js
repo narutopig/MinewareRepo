@@ -25,16 +25,23 @@ dbl.webhook.on('vote', vote => {
 */
 
 client.on('ready', async () => {
-    let index = 1;
-    const activies = [
-        `${client.users.cache.size} users`,
-        `${client.guilds.cache.size} servers`,
-        `v${pkg.version}`
-    ];
+    let index = 1
     console.log(`Logged in as ${client.user.username} on v${pkg.version}`);
-    client.user.setActivity(`${prefix}help | ${activies[0]}`);
+    client.user.setActivity(`${prefix}help | ${client.users.cache.size} users`);
     setInterval(() => {
-        client.user.setActivity(`${prefix}help | ${activies[index]}`);
+        let activity;
+        switch(index){
+            case 0:
+                activity = `${client.users.cache.size} users`;
+                break;
+            case 1:
+                activity = `${client.guilds.cache.size} servers`;
+                break;
+            case 2:
+                activity = `v${pkg.version}`;
+                break;
+        }
+        client.user.setActivity(`${prefix}help | ${activity}`);
         index = (index + 1) % activies.length;
     }, 20000);
 });
@@ -49,7 +56,7 @@ client.on('message', async (message) => {
     let command = temp[0].slice(prefix.length);
     let args = temp.slice(1);
     try {
-        client.commands.get(command.toLowerCase()).execute(message, args, client);
+        await client.commands.get(command.toLowerCase()).execute(message, args, client);
     } catch(err) {
         console.log(err);
     } finally {
