@@ -1,8 +1,9 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require('discord.js');
 const snoowrap = require('snoowrap');
-const { type } = require('os');
+const Jimp = require('jimp');
+const path = require('path');
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 const getPosts = async (subreddit, posts) => {
@@ -17,13 +18,12 @@ const getPosts = async (subreddit, posts) => {
     const sub = await r.getSubreddit(subreddit);
     const topPosts = await sub.getTop({time: 'week', limit: 10});
     let data = [];
-    let yes = true;
     topPosts.forEach((post) => {
         data.push({
                 link: post.permalink,
                 title: post.title,
                 score: post.score,
-                comments: post.comments,
+                comments: post.num_comments,
                 thumbnail: post.thumbnail,
             });
     });
@@ -35,27 +35,31 @@ module.exports = {
     'description': 'Gets a random post from reddit',
     'arguments': 'subreddit (does\'t need /r), posts (optional)',
     'permissions': 'None',
-    execute(message,args,client) {
+    async execute(message,args,client) {
         const subreddit = args[0];
         let postNum;
         if (args[1]) postNum = parseInt(args[1]);
         if (postNum == NaN) {
             postNum = 10;
         }
-        const posts = getPosts(subreddit,postNum)
-            .then(function (posts){
+        const posts = await getPosts(subreddit,postNum)
+            .then(async function (posts){
                 const post = posts[getRandomInt(posts.length)];
+                const image = await Jimp.read(post.thumbnail);
+                image.resize(300,Jimp.AUTO);
+                image.write(path.join(__dirname,'resources/temp.jpg'));
                 const embed = new MessageEmbed()
                     .setTitle(`${post.title}`)
                     .setURL(`https://www.reddit.com${post.link}`)
-                    .setImage(post.thumbnail,1000,1000)
                     .setColor('#ff00ff')
-                    .setFooter(`⬆️${post.score}`);
+                    .attachFiles([path.join(__dirname,'resources/temp.jpg')])
+                    .setImage('attachment://temp.jpg')
+                    .setFooter(`⬆️${post.score} 💬${post.comments}`);
                 return message.channel.send(embed);
             })
             .catch(function(err){
                 console.log(err);
                 return message.channel.send('Something went wrong');
-            })
+            });
     }
 }
