@@ -42,7 +42,7 @@ client.on('ready', async () => {
                 break;
         }
         client.user.setActivity(`${prefix}help | ${activity}`);
-        index = (index + 1) % activies.length;
+        index = (index + 1) % 3;
     }, 20000);
 });
 
