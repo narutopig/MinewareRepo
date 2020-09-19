@@ -1,6 +1,6 @@
 {
   "name": "utilitiesbot",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "Epic bot",
   "main": "index.js",
   "scripts": {
@@ -11,12 +11,15 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^14.10.1",
+    "avconv": "^3.1.0",
     "dblapi.js": "^2.4.1",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
-    "jimp": "^0.16.1",
+    "ffmpeg-static": "^4.2.7",
     "node-fetch": "^2.6.1",
-    "snoowrap": "^1.21.0"
+    "opusscript": "0.0.7",
+    "snoowrap": "^1.21.0",
+    "ytdl-core": "^3.2.2"
   },
   "devDependencies": {},
   "repository": {

@@ -16,6 +16,7 @@ module.exports = {
             embed.addFields(
                 {name: `How to use the command`, value: `Type ${process.env.PREFIX}help [section] to get the commands in that section. For example, ${process.env.PREFIX}help text`, inline: false},
                 {name: `Text`, value: `Text commands (no paramaters)`, inline: false},
+                {name: `Text 2`, value: `Text commands part 2`, inline: false},
                 {name: `Moderation`, value: `Moderation commands (needs special permissions)`, inline: false},
                 {name: 'Other', value: 'Everything else', inline: false}
             );
@@ -33,14 +34,22 @@ module.exports = {
                     break;
                 case 'TEXT':
                     embed.addFields(
-                        {name: `hi`, value: `Hello!`, inline: false},
-                        {name: `stats`, value: `Provides some bot stats`, inline: false},
+                        {name: 'bug', value: 'Report a bug', inline: false},
                         {name: `covid`, value: `Gets covid stats for a US state or US`, inline: false},
-                        {name: 'server', value: 'Join the Utilibot Support Server!'},
+                        {name: `hi`, value: `Hello!`, inline: false},
                         {name: 'invite', value: 'Invite Utilibot to your server!', inline: false},
-                        {name: 'bug', value: 'Report a bug', inline: false}
+                        {name: 'potato', value: 'Potato', inline: false},
+                        {name: 'reddit', value: 'Gets a random reddit post from a subreddit of your choice!', inline: false}
                     )
                     break;
+                case 'TEXT2':
+                        embed.addFields(
+                            {name: 'server', value: 'Join the Utilibot Support Server!'},
+                            {name: `stats`, value: `Provides some bot stats`, inline: false},
+                            {name: 'vote', value: 'Vote for the bot and the server on top.gg', inline: false},
+                            {name: 'website', value: `${client.user.username}\'s Development Post`, inline: false},
+                            {name: 'funnyadvice', value: 'Really dumb advice', inline: false}
+                        )
                 case 'OTHER':
                     embed.addFields(
                         {name: 'giveaway', value: 'Still in development :smile:', inline: false},
