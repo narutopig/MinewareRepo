@@ -1,8 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const { MessageEmbed, MessageAttachment } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const snoowrap = require('snoowrap');
-const path = require('path');
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
 const getPosts = async (subreddit, posts) => {
@@ -12,10 +11,11 @@ const getPosts = async (subreddit, posts) => {
         clientSecret: process.env.CLIENTSECRET,
         refreshToken: process.env.REFRESHTOKEN
     });
-    if (posts == undefined) posts = 10;
+    posts = parseInt(posts);
+    if (posts == undefined || posts == NaN) posts = 10;
     if (subreddit.startsWith('/r')) subreddit = subreddit.slice(2);
     const sub = await r.getSubreddit(subreddit);
-    const topPosts = await sub.getTop({time: 'week', limit: 10});
+    const topPosts = await sub.getTop({time: 'week', limit: posts});
     let data = [];
     topPosts.forEach((post) => {
         data.push(post);

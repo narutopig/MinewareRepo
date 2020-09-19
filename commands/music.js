@@ -8,18 +8,24 @@ module.exports = {
     async execute(message,args,client){
         const voiceChannel = message.member.voice.channel;
         if (!voiceChannel) return message.channel.send('You need to be in a voice channel to use this command.');
-        // const permissions = voiceChannel.permissionsFor(client.member);
-        try {
-            const connection = await voiceChannel.join()
-            const dispatcher = connection.play(path.join(__dirname,`/resources/songs/${args[0].toLowerCase()}.mp3`));
-            dispatcher.on('finish', () => { 
-                message.channel.send('Finished playing!');
-            }); 
-            dispatcher.destroy();
-        }
-        catch (err){
-            console.log(err);
-            return message.channel.send('Something went wrong.');
+        switch (args[0].toLowerCase()){
+            case 'PLAY':
+                voiceChannel.join()
+                .then(connection => {
+                    try {
+                        const dispatcher = connection.play(ytdl(args[1]), {volume: 1});
+                    dispatcher.on('finish', () => { 
+                        dispatcher.destroy();
+                        voiceChannel.leave();
+                        return message.channel.send('Finished playing!');
+                    }); 
+                    } catch (err){
+                        console.log(err);
+                        dispatcher.destroy();
+                        voiceChannel.leave();
+                        return message.channel.send('Something went wrong.');
+                    }
+                });
         }
     }
 }
