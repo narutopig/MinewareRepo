@@ -2,7 +2,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const snoowrap = require('snoowrap');
-const Jimp = require('jimp');
 const path = require('path');
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
@@ -19,13 +18,7 @@ const getPosts = async (subreddit, posts) => {
     const topPosts = await sub.getTop({time: 'week', limit: 10});
     let data = [];
     topPosts.forEach((post) => {
-        data.push({
-                link: post.permalink,
-                title: post.title,
-                score: post.score,
-                comments: post.num_comments,
-                thumbnail: post.thumbnail,
-            });
+        data.push(post);
     });
     return data;
 };
@@ -40,21 +33,17 @@ module.exports = {
         let postNum;
         if (args[1]) postNum = parseInt(args[1]);
         if (postNum == NaN) {
-            postNum = 10;
+            postNum = 50;
         }
         const posts = await getPosts(subreddit,postNum)
             .then(async function (posts){
                 const post = posts[getRandomInt(posts.length)];
-                const image = await Jimp.read(post.thumbnail);
-                image.resize(300,Jimp.AUTO);
-                image.write(path.join(__dirname,'resources/temp.jpg'));
                 const embed = new MessageEmbed()
                     .setTitle(`${post.title}`)
-                    .setURL(`https://www.reddit.com${post.link}`)
+                    .setURL(`https://www.reddit.com${post.permalink}`)
                     .setColor('#ff00ff')
-                    .attachFiles([path.join(__dirname,'resources/temp.jpg')])
-                    .setImage('attachment://temp.jpg')
-                    .setFooter(`⬆️${post.score} 💬${post.comments}`);
+                    .setImage(post.url)
+                    .setFooter(`⬆️${post.score} 💬${post.num_comments}`);
                 return message.channel.send(embed);
             })
             .catch(function(err){
