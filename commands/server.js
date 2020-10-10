@@ -4,6 +4,6 @@ module.exports = {
     'arguments': 'None',
     'permissions': 'None',
     async execute(message,args,client){
-        message.channel.send(`Join the Support Server with this link!\n${'https://discord.gg/J5VHMyz'}`)
+        message.channel.send(`Join the Utilibot Support Server with this link!\n${'https://discord.gg/XM8pSBw'}`)
     }
 }
